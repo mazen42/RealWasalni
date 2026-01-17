@@ -11,6 +11,10 @@
       "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\dtos\\triprequestdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|d:\\waslni\\wasalni_development\\wasalni\\fluent validators\\locationdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|solutionrelative:wasalni\\fluent validators\\locationdtovalidator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -28,10 +32,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\riderequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,14 +71,14 @@
               "RelativeDocumentMoniker": "Wasalni\\Properties\\launchSettings.json",
               "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Properties\\launchSettings.json",
               "RelativeToolTip": "Wasalni\\Properties\\launchSettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAfAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-01-17T08:53:58.317Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "TripRequestDTOValidator.cs",
               "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Fluent Validators\\TripRequestDTOValidator.cs",
               "RelativeDocumentMoniker": "Wasalni\\Fluent Validators\\TripRequestDTOValidator.cs",
@@ -86,11 +86,12 @@
               "RelativeToolTip": "Wasalni\\Fluent Validators\\TripRequestDTOValidator.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T08:00:45.626Z"
+              "WhenOpened": "2026-01-17T08:00:45.626Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "LocationDTOValidator.cs",
               "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Fluent Validators\\LocationDTOValidator.cs",
               "RelativeDocumentMoniker": "Wasalni\\Fluent Validators\\LocationDTOValidator.cs",
@@ -103,7 +104,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Microsoft.Common.CurrentVersion.targets",
               "DocumentMoniker": "D:\\.net projects\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "RelativeDocumentMoniker": "..\\..\\.net projects\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
@@ -111,7 +112,8 @@
               "RelativeToolTip": "..\\..\\.net projects\\MSBuild\\Current\\Bin\\amd64\\Microsoft.Common.CurrentVersion.targets",
               "ViewState": "AgIAAAcVAAAAAAAAAAAAwBEVAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
-              "WhenOpened": "2026-01-17T07:40:08.396Z"
+              "WhenOpened": "2026-01-17T07:40:08.396Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -123,11 +125,12 @@
               "RelativeToolTip": "Wasalni_DataAccess\\Migrations\\20260117073858_init.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T07:38:59.127Z"
+              "WhenOpened": "2026-01-17T07:38:59.127Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Passenger.cs",
               "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\Passenger.cs",
               "RelativeDocumentMoniker": "Wasalni_Models\\Passenger.cs",
@@ -135,11 +138,12 @@
               "RelativeToolTip": "Wasalni_Models\\Passenger.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAywBUAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T07:38:10.615Z"
+              "WhenOpened": "2026-01-17T07:38:10.615Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 2,
               "Title": "BusTrip.cs",
               "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\BusTrip.cs",
               "RelativeDocumentMoniker": "Wasalni_Models\\BusTrip.cs",
@@ -147,7 +151,8 @@
               "RelativeToolTip": "Wasalni_Models\\BusTrip.cs",
               "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T07:38:07.958Z"
+              "WhenOpened": "2026-01-17T07:38:07.958Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -159,7 +164,8 @@
               "RelativeToolTip": "Wasalni_Models\\RideRequest.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T07:30:01.183Z"
+              "WhenOpened": "2026-01-17T07:30:01.183Z",
+              "EditorCaption": ""
             }
           ]
         }
@@ -192,11 +198,12 @@
               "RelativeToolTip": "Wasalni_Models\\DTOs\\LocationDTO.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T06:32:04.656Z"
+              "WhenOpened": "2026-01-17T06:32:04.656Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_DataAccess\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Wasalni_DataAccess\\Data\\AppDbContext.cs",
@@ -204,7 +211,8 @@
               "RelativeToolTip": "Wasalni_DataAccess\\Data\\AppDbContext.cs",
               "ViewState": "AgIAAA0AAAAAAAAAAAAYwDEAAABAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-17T06:20:32.377Z"
+              "WhenOpened": "2026-01-17T06:20:32.377Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
