@@ -1,0 +1,223 @@
+[
+  {
+    "ContainingType": "Wasalni.Controllers.AccountUserController",
+    "Method": "Login",
+    "RelativePath": "api/AccountUser/Login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.LoginDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.AccountUserController",
+    "Method": "RegisterAsync",
+    "RelativePath": "api/AccountUser/Register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Email",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Password",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PhoneNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "HomeLocation.Longitude",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "HomeLocation.Latitude",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Gender",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "UserType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Age",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "LicenseImageFace",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "IdCardFace",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "LicenseImageBack",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "IdCardBack",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "VehicleType",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "PlateNumber",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "monthsOfWork",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.AdminController",
+    "Method": "GetAllDriver",
+    "RelativePath": "api/Admin/allDrivers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.AdminController",
+    "Method": "GetDriver",
+    "RelativePath": "api/Admin/GetDriver",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.AdminController",
+    "Method": "UpdateDriverStatusAsync",
+    "RelativePath": "api/Admin/UpdateDriverStatus",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.UpdateDriverStatusAndDataDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "GetAcceptedTripsAsync",
+    "RelativePath": "api/Driver/GetAcceptedTrips",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "GetAllTripsRequests",
+    "RelativePath": "api/Driver/GetAllTripsRequests",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "RequestTripAsync",
+    "RelativePath": "api/Driver/RequestTripnominatim",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.DriverTripRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.JobController",
+    "Method": "DecrementPassengersLeftDaysInAllTripsAsyncJob",
+    "RelativePath": "api/Job/DecrementPassengersLeftDaysInAllTripsAsyncJobCheck",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.JobController",
+    "Method": "CreateBackGroundJob",
+    "RelativePath": "api/Job/FillingBusTripsByDriversAndSendNotificationToAllPassengersJobCheck",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.TripController",
+    "Method": "UserTripRequestAsync",
+    "RelativePath": "api/Trip/UserTripRequest",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.TripRequestDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]
