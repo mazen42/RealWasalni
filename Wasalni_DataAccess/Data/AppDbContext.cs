@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions.Infrastructure;
 using System.Reflection.Emit;
 using Wasalni_Models;
 
@@ -17,6 +18,7 @@ namespace Wasalni_DataAccess.Data
         public DbSet<DriverProfile> DriverProfiles { get; set; }
         public DbSet<RideRequest> RideRequests { get; set; }
         public DbSet<DriverTripRequest> DriverTripRequests { get; set; }
+        public DbSet<Seat> Seats { get; set; }
 
         public AppDbContext(DbContextOptions Options) : base(Options)
         {
@@ -26,6 +28,7 @@ namespace Wasalni_DataAccess.Data
         {
             base.OnModelCreating(builder);
             builder.Entity<Bus>().HasKey(x => x.Id);
+            builder.Entity<RideRequest>().HasKey(x => x.Id);
             builder.Entity<Bus>().Property(x => x.PlateNumber).HasMaxLength(7).IsRequired(true);
             builder.Entity<ApplicationUser>().HasIndex(x => x.Email).IsUnique();
             builder.Entity<ApplicationUser>().OwnsOne(c => c.HomeLocation, loc =>
@@ -52,9 +55,7 @@ namespace Wasalni_DataAccess.Data
             builder.Entity<DriverProfile>().HasOne(x => x.ApplicationUser).WithOne().HasForeignKey<DriverProfile>(x => x.ApplicationUserId).OnDelete(DeleteBehavior.NoAction).IsRequired();
             builder.Entity<BusTrip>().HasMany(x => x.Passengers).WithOne(x => x.BusTrip).HasForeignKey(x => x.BusTripId).OnDelete(DeleteBehavior.NoAction).IsRequired(false);
             builder.Entity<RoutePlan>().HasMany(x => x.PickUpPoints).WithOne(x => x.RoutePlan).HasForeignKey(x => x.RoutePlanId).OnDelete(DeleteBehavior.NoAction).IsRequired();
-            builder.Entity<Passenger>().HasOne(x => x.ApplicationUser).WithOne().HasForeignKey<Passenger>(x => x.ApplicationUserId).IsRequired();
-
-
+            builder.Entity<Passenger>().HasOne(x => x.ApplicationUser).WithMany().HasForeignKey(x => x.ApplicationUserId).IsRequired();
         }
     }
 }

@@ -23,8 +23,6 @@ namespace Wasalni_Models
         [Required]
         public string IdCardBackURL { get; set; }
         public Bus Bus { get; set; }
-        public DateTime SubscriptionExpiryDate { get; set; }
-        public bool IsSubscriptionActive => SubscriptionExpiryDate >= DateTime.UtcNow;
         public DriverApprovalStatus ApprovalStatus { get; set; } = DriverApprovalStatus.Pending;
         public List<DriverTripRequest> TripRequests { get; set; }
         public List<BusTrip> busTrips { get; set; }

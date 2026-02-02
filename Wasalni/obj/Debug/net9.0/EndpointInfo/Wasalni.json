@@ -77,10 +77,6 @@
                   },
                   "PlateNumber": {
                     "type": "string"
-                  },
-                  "monthsOfWork": {
-                    "type": "integer",
-                    "format": "int32"
                   }
                 }
               },
@@ -128,9 +124,6 @@
                   "style": "form"
                 },
                 "PlateNumber": {
-                  "style": "form"
-                },
-                "monthsOfWork": {
                   "style": "form"
                 }
               }
@@ -283,7 +276,7 @@
         }
       }
     },
-    "/api/Driver/GetAcceptedTrips": {
+    "/api/Driver/GetAllTrips": {
       "get": {
         "tags": [
           "Driver"
@@ -468,10 +461,6 @@
           },
           "driverApprovalStatus": {
             "$ref": "#/components/schemas/DriverApprovalStatus"
-          },
-          "monthsToWork": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false

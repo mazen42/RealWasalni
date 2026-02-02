@@ -34,7 +34,6 @@ namespace Wasalni_Models.DTOs
         public IFormFile? IdCardBack { get; set; }
         public VehicleType VehicleType { get; set; }
         public string? PlateNumber { get; set; }
-        public int monthsOfWork { get; set; }
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (UserType == UserType.Driver)
@@ -51,9 +50,6 @@ namespace Wasalni_Models.DTOs
                     yield return new ValidationResult("Plate number is required", new[] { nameof(PlateNumber) });
                 if (!string.IsNullOrEmpty(PlateNumber) && PlateNumber.Length > 7)
                     yield return new ValidationResult("Plate number must be between 1 and 7", new[] { nameof(PlateNumber) });
-                if (monthsOfWork < 1 || monthsOfWork > 3)
-                    yield return new ValidationResult("Months To Work With Us Must Be Between 1 and 3", new[] { nameof(PlateNumber) });
-                
             }
 
         }

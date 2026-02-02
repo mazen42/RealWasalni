@@ -278,12 +278,6 @@ namespace Wasalni_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("IsConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsOptimized")
-                        .HasColumnType("bit");
-
                     b.Property<bool>("NotificationSent")
                         .HasColumnType("bit");
 
@@ -299,6 +293,9 @@ namespace Wasalni_DataAccess.Migrations
                     b.Property<string>("ToGovernerate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TripStatus")
+                        .HasColumnType("int");
 
                     b.Property<DateOnly>("endDate")
                         .HasColumnType("date");
@@ -341,9 +338,6 @@ namespace Wasalni_DataAccess.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("SubscriptionExpiryDate")
-                        .HasColumnType("datetime2");
-
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicationUserId")
@@ -372,6 +366,9 @@ namespace Wasalni_DataAccess.Migrations
                     b.Property<string>("FromGovernerate")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RequestStatus")
+                        .HasColumnType("int");
 
                     b.Property<TimeOnly>("StartTime")
                         .HasColumnType("time");
@@ -458,8 +455,7 @@ namespace Wasalni_DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId")
-                        .IsUnique();
+                    b.HasIndex("ApplicationUserId");
 
                     b.HasIndex("BusTripId");
 
@@ -700,8 +696,8 @@ namespace Wasalni_DataAccess.Migrations
             modelBuilder.Entity("Wasalni_Models.Passenger", b =>
                 {
                     b.HasOne("Wasalni_Models.ApplicationUser", "ApplicationUser")
-                        .WithOne()
-                        .HasForeignKey("Wasalni_Models.Passenger", "ApplicationUserId")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

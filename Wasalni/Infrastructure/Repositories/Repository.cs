@@ -40,14 +40,19 @@ namespace Wasalni.Infrastructure.Repositories
             return query.FirstOrDefault()!;
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool tracked = false)
         {
-            IQueryable<T> query = Set;
+            IQueryable<T> query;
+            if (tracked)
+                query = Set;
+            else
+                query = Set.AsNoTracking();
+            
             if (!string.IsNullOrEmpty(includeProperties))
             {
                 foreach (var includeprop in includeProperties.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    query = Set.Include(includeprop);
+                    query = query.Include(includeprop);
                 }
 
             }

@@ -10,7 +10,6 @@ namespace Wasalni_Models.DTOs
     {
         public int id {  get; set; }
         public DriverApprovalStatus DriverApprovalStatus { get; set; }
-        public int monthsToWork { get; set; }
 
     }
 }

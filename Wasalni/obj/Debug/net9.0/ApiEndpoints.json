@@ -97,18 +97,13 @@
         "Name": "PlateNumber",
         "Type": "System.String",
         "IsRequired": false
-      },
-      {
-        "Name": "monthsOfWork",
-        "Type": "System.Int32",
-        "IsRequired": false
       }
     ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Wasalni.Controllers.AdminController",
-    "Method": "GetAllDriver",
+    "Method": "GetAllDriverAsync",
     "RelativePath": "api/Admin/allDrivers",
     "HttpMethod": "GET",
     "IsController": true,
@@ -151,7 +146,7 @@
   {
     "ContainingType": "Wasalni.Controllers.DriverController",
     "Method": "GetAcceptedTripsAsync",
-    "RelativePath": "api/Driver/GetAcceptedTrips",
+    "RelativePath": "api/Driver/GetAllTrips",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

@@ -24,9 +24,9 @@ namespace Wasalni_Models
         public TripType TripType { get; set; }
         public BusTrip BusTrip { get; set; }
         public int? BusTripId { get; set; }
-
         public bool IsPaid { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public Seat? Seat { get; set; }
     }
 }

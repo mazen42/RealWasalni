@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
+using ServiceStack.Redis;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -73,6 +74,10 @@ namespace Wasalni.Controllers
                 }
             if (obj.UserType == UserType.Driver)
             {
+                var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+                var ext1 = Path.GetExtension(obj.IdCardFace!.FileName).ToLowerInvariant();
+                if (!allowed.Contains(ext1))
+                    return BadRequest("Only .jpg, .jpeg, .png, .webp allowed");
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
 
                 string idCardsPath = Path.Combine(wwwRootPath, @"images\IdCards");
@@ -106,13 +111,12 @@ namespace Wasalni.Controllers
                 }
                 DriverProfile driverProfile = new DriverProfile
                 {
-                    IdCardFaceURL = @"\images\IdCards\" + idCardFaceName,
-                    IdCardBackURL = @"\images\IdCards\" + idCardBackName,
-                    LicenseImageFaceURL = @"\images\LicenseCards\" + licenseFaceName,
-                    LicenseImageBackURL = @"\images\LicenseCards\" + licenseBackName,
+                    IdCardFaceURL = @"/images/IdCards/" + idCardFaceName,
+                    IdCardBackURL = @"/images/IdCards/" + idCardBackName,
+                    LicenseImageFaceURL = @"/images/LicenseCards/" + licenseFaceName,
+                    LicenseImageBackURL = @"/images/LicenseCards/" + licenseBackName,
                     ApprovalStatus = DriverApprovalStatus.Pending,
                     ApplicationUserId = user.Id,
-                    SubscriptionExpiryDate = DateTime.Now.AddMonths(obj.monthsOfWork)
                 };
                 _unitOfWork.driverProfile.Add(driverProfile);
                 _unitOfWork.Save();

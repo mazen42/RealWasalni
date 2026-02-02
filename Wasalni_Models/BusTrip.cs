@@ -20,13 +20,12 @@ namespace Wasalni_Models
         public string FromGovernerate { get; set; }
         public string ToGovernerate { get; set; }
         public DateOnly? StartDate {  get; set; }
-        public DateOnly endDate { get; set; } = DateOnly.FromDateTime(DateTime.Now.AddMonths(1));
+        public DateOnly endDate { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        public bool IsOptimized { get; set; } = false; 
-        public bool IsConfirmed { get; set; } = false; 
         public double? Price { get; set; }
+        public TripStatus TripStatus { get; set; }
         public bool NotificationSent { get; set; } = false;
-        public bool IsCompleted() => this.Passengers.Count == 14;
+        public List<Seat> Seats { get; set; }
 
     }
 }

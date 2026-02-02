@@ -21,6 +21,7 @@ namespace Wasalni.Controllers
             _un = unitOfWork;
             this._httpClient = httpClient;
         }
+
         [HttpPost("UserTripRequest")]
         public async Task<IActionResult> UserTripRequestAsync(TripRequestDTO obj)
         {
@@ -30,7 +31,9 @@ namespace Wasalni.Controllers
             var responseTo = await BuiltInMethods.GetCityFromNominatimAsync(obj.ToLocation.Latitude, obj.ToLocation.Longitude,_httpClient);
             var PassengerRepeatingCheck = await _un.passenger.Get(x => x.FromLocation.Longitude == obj.FromLocation.Longitude && x.FromLocation.Latitude == obj.FromLocation.Latitude && x.ToLocation.Longitude == obj.ToLocation.Longitude && x.ToLocation.Latitude == obj.ToLocation.Latitude && x.ApplicationUserId == User.GetUserId() && x.ArrivalTime == obj.arrivalTime);
             if (PassengerRepeatingCheck is not null)
-                return BadRequest("Trip Already Requested");
+                return BadRequest(new { message = "Trip Already Requested",code = BadRequest().StatusCode });
+            if (responseFrom is null || responseTo is null)
+                return BadRequest(new {code = BadRequest().StatusCode, message = "Invalid Location" });
             Passenger passenger = new Passenger
             {
                 ArrivalTime = obj.arrivalTime,
@@ -46,7 +49,7 @@ namespace Wasalni.Controllers
             {
                 passenger.RideRequestId = RideRequestsCheck.Id;
                 _un.Save();
-                return Ok(new {message = "Trip Booked Successfully u Will Get Notification When its done",code = 204});
+                return Ok(new {message = "Trip Booked Successfully u Will Get Notification When its done",code = Ok().StatusCode});
             }
             var newRide = new RideRequest
             {
@@ -61,7 +64,7 @@ namespace Wasalni.Controllers
             _un.Save();
             passenger.RideRequestId = newRide.Id;
             _un.Save();
-            return Ok();
+            return Ok(new {message = "Trip Requested Successfully", code = Ok().StatusCode});
         }
     }
 }

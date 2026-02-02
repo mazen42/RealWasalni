@@ -27,7 +27,7 @@ namespace Wasalni.Services
             _recurringJobManager.AddOrUpdate(
     "FillTripsAndNotifyPassengers",
     () => _backGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers(),
-    Cron.Minutely());
+    Cron.Daily());
         }
     }
 }

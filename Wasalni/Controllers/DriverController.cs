@@ -47,7 +47,10 @@ namespace Wasalni.Controllers
                 return BadRequest("The Duration Must Be Greater Than 4 Hours");
             var responseFrom = await BuiltInMethods.GetCityFromNominatimAsync(obj.FromLocation.Latitude, obj.FromLocation.Longitude, _httpClient);
             var responseTo = await BuiltInMethods.GetCityFromNominatimAsync(obj.ToLocation.Latitude, obj.ToLocation.Longitude, _httpClient);
-            if(responseFrom != null && responseTo != null)
+            var DublicateTripCheck = _unitOfWork.driverTripRequest.Get(x => x.ToGovernerate == responseTo && x.FromGovernerate == responseFrom && x.RequestStatus == DriverTripRequestStatus.Requested);
+            if (DublicateTripCheck is not null)
+                return BadRequest("Trip Already Requested");
+            if (responseFrom != null && responseTo != null)
             {
             var userId = User.GetUserId();
             var driverId = User.GetDriverId(_db);
@@ -77,13 +80,14 @@ namespace Wasalni.Controllers
                 fromGovernerate = s.FromGovernerate,
                 toGovernerate = s.ToGovernerate,
                 startTime = s.StartTime,
-                endTime = s.EndTime
-            }) ;
+                endTime = s.EndTime,
+                status = s.RequestStatus
+            });
             if (allTripRequests != null)
                 return Ok(allTripRequests);
             return NotFound("Empty");
         }
-        [HttpGet("GetAcceptedTrips")]
+        [HttpGet("GetAllTrips")]
         public async Task<IActionResult> GetAcceptedTripsAsync() {
             var driverId = User.GetDriverId(_db);
             var trips = _unitOfWork.busTrip.GetAll(b => b.DriverProfileId == driverId).Select(b => new
@@ -91,8 +95,9 @@ namespace Wasalni.Controllers
                 id = b.Id,
                 from = b.FromGovernerate,
                 to = b.ToGovernerate,
-                startdate = b.StartDate,
-                iscompleted = b.IsCompleted(),
+                startdate = (b.StartDate)?.ToString("MM/dd"),
+                enddate = b.endDate.ToString("MM/dd"),
+                status = b.TripStatus
             });
             if (trips != null)
                 return Ok(trips);

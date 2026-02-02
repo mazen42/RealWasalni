@@ -16,6 +16,7 @@ namespace Wasalni_Models
         public string ToGovernerate { get; set; }
         public TimeOnly StartTime { get; set; }
         public TimeOnly EndTime { get; set; }
+        public DriverTripRequestStatus RequestStatus { get; set; } = DriverTripRequestStatus.Requested;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

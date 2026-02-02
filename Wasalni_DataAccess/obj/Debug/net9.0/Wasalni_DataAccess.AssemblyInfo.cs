@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wasalni_DataAccess")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd4a9df9ec6056e4b988044d9265ab04af042b60")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6825d8010d3b17b18d2eaec1d66da01cd699dbc5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wasalni_DataAccess")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wasalni_DataAccess")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

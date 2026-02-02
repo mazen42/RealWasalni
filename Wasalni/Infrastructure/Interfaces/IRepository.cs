@@ -4,7 +4,7 @@ namespace Wasalni.Infrastructure.Interfaces
 {
     public interface IRepository<T> where T : class
     {
-        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null);
+        IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null, bool tracked = false);
         Task<T> Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false);
         void Add(T entity);
         void Remove(T entity);

@@ -47,15 +47,15 @@ namespace Wasalni_DataAccess
                 await _roleManager.CreateAsync(new IdentityRole(SD.Role_Passenger)).ConfigureAwait(true);
                 await _userManager.CreateAsync(new ApplicationUser
                 {
-                    UserName = "admin@mezz.com",
-                    Email = "admin@mezz.com",
+                    UserName = "admin",
+                    Email = "admin@gmail.com",
                     PhoneNumber = "89150303",
                     UserType = UserType.Admin,
                     HomeLocation = new Location {Longitude = 31.2489 ,Latitude = 30.0507 },
                     Age = 21,
-                }, "123456789mM$@");
+                }, "123mM$@");
 
-                ApplicationUser? user = await _userManager.FindByEmailAsync("admin@mezz.com");
+                ApplicationUser? user = await _userManager.FindByEmailAsync("admin@gmail.com");
                 await _userManager.AddToRoleAsync(user!, SD.Role_Admin);
             };
 
