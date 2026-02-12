@@ -3,32 +3,20 @@
   "WorkspaceRootPath": "D:\\Waslni\\Wasalni_Development\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{019746D8-4BEC-4196-AB20-A3ED0F4F8ABE}|Wasalni_DataAccess\\Wasalni_DataAccess.csproj|d:\\waslni\\wasalni_development\\wasalni_dataaccess\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{019746D8-4BEC-4196-AB20-A3ED0F4F8ABE}|Wasalni_DataAccess\\Wasalni_DataAccess.csproj|solutionrelative:wasalni_dataaccess\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|d:\\waslni\\wasalni_development\\wasalni\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|solutionrelative:wasalni\\controllers\\admincontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\bustrip.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\tripstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\tripstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\passenger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|d:\\waslni\\wasalni_development\\wasalni\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|solutionrelative:wasalni\\services\\notificationservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|d:\\waslni\\wasalni_development\\wasalni\\controllers\\tripcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F20BCEB7-5D29-47D3-A724-F28041919CD3}|Wasalni\\Wasalni.csproj|solutionrelative:wasalni\\controllers\\tripcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\seat.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\seatstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\seatstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\seatchar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\seatchar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|d:\\waslni\\wasalni_development\\wasalni_models\\driverprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DFDCF6E1-4218-4F86-9A97-4503FDAD642F}|Wasalni_Models\\Wasalni_Models.csproj|solutionrelative:wasalni_models\\driverprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,90 +26,11 @@
       "DocumentGroups": [
         {
           "DockedHeight": 656,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": -1,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TripController.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Controllers\\TripController.cs",
-              "RelativeDocumentMoniker": "Wasalni\\Controllers\\TripController.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Controllers\\TripController.cs",
-              "RelativeToolTip": "Wasalni\\Controllers\\TripController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAywBEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-20T21:49:28.028Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BusTrip.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\BusTrip.cs",
-              "RelativeDocumentMoniker": "Wasalni_Models\\BusTrip.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\BusTrip.cs",
-              "RelativeToolTip": "Wasalni_Models\\BusTrip.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T22:43:58.03Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Passenger.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\Passenger.cs",
-              "RelativeDocumentMoniker": "Wasalni_Models\\Passenger.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\Passenger.cs",
-              "RelativeToolTip": "Wasalni_Models\\Passenger.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAArAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T22:42:48.5Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "AppDbContext.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_DataAccess\\Data\\AppDbContext.cs",
-              "RelativeDocumentMoniker": "Wasalni_DataAccess\\Data\\AppDbContext.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_DataAccess\\Data\\AppDbContext.cs",
-              "RelativeToolTip": "Wasalni_DataAccess\\Data\\AppDbContext.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAIwCcAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T22:41:57.878Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "SeatStatus.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\SeatStatus.cs",
-              "RelativeDocumentMoniker": "Wasalni_Models\\SeatStatus.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\SeatStatus.cs",
-              "RelativeToolTip": "Wasalni_Models\\SeatStatus.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T22:03:11.225Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SeatChar.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\SeatChar.cs",
-              "RelativeDocumentMoniker": "Wasalni_Models\\SeatChar.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\SeatChar.cs",
-              "RelativeToolTip": "Wasalni_Models\\SeatChar.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-31T22:01:39.456Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -130,26 +39,75 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            }
+          ]
+        },
+        {
+          "DockedHeight": 97,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TripStatus.cs",
+              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\TripStatus.cs",
+              "RelativeDocumentMoniker": "Wasalni_Models\\TripStatus.cs",
+              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\TripStatus.cs",
+              "RelativeToolTip": "Wasalni_Models\\TripStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T19:50:17.223Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Seat.cs",
-              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\Seat.cs",
-              "RelativeDocumentMoniker": "Wasalni_Models\\Seat.cs",
-              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\Seat.cs",
-              "RelativeToolTip": "Wasalni_Models\\Seat.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAIAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "AdminController.cs",
+              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Controllers\\AdminController.cs",
+              "RelativeDocumentMoniker": "Wasalni\\Controllers\\AdminController.cs",
+              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Controllers\\AdminController.cs",
+              "RelativeToolTip": "Wasalni\\Controllers\\AdminController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-01-28T17:09:23.651Z",
+              "WhenOpened": "2026-02-12T19:45:36.804Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "NotificationService.cs",
+              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Services\\NotificationService.cs",
+              "RelativeDocumentMoniker": "Wasalni\\Services\\NotificationService.cs",
+              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni\\Services\\NotificationService.cs",
+              "RelativeToolTip": "Wasalni\\Services\\NotificationService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T18:16:11.853Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DriverProfile.cs",
+              "DocumentMoniker": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\DriverProfile.cs",
+              "RelativeDocumentMoniker": "Wasalni_Models\\DriverProfile.cs",
+              "ToolTip": "D:\\Waslni\\Wasalni_Development\\Wasalni_Models\\DriverProfile.cs",
+              "RelativeToolTip": "Wasalni_Models\\DriverProfile.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-02-12T18:08:08.174Z",
               "EditorCaption": ""
             }
           ]
         },
         {
-          "DockedHeight": 28,
+          "DockedHeight": 9,
           "SelectedChildIndex": -1,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
@@ -157,10 +115,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
             }
           ]
         }

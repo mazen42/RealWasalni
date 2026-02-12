@@ -13,7 +13,7 @@ namespace Wasalni_Utility
         public static async Task<string?> GetCityFromNominatimAsync(double latitude, double longitude,HttpClient _httpClient)
         {
             // رابط Nominatim
-            string url = $"https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&addressdetails=1&zoom=18";
+            string url = $"https://nominatim.openstreetmap.org/reverse?lat={latitude}&lon={longitude}&format=json&addressdetails=1&zoom=18&accept-language=en";
 
             using var request = new HttpRequestMessage(HttpMethod.Get, url);
             // مهم جدًا: User-Agent لتجنب الحظر
@@ -37,6 +37,23 @@ namespace Wasalni_Utility
             }
 
             return null;
+        }
+        public static string NormalizeArabic(string input)
+        {
+            if (string.IsNullOrWhiteSpace(input))
+                return input;
+
+            return input
+                .Trim()
+                .Replace("أ", "ا")
+                .Replace("إ", "ا")
+                .Replace("آ", "ا")
+                .Replace("ى", "ي")
+                .Replace("ة", "ه")
+                .Replace("\u00A0", " ") // non-breaking space
+                .Replace("\t", " ")
+                .Replace("\r", "")
+                .Replace("\n", "");
         }
     }
 }

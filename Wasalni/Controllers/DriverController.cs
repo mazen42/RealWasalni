@@ -42,14 +42,14 @@ namespace Wasalni.Controllers
             if(!ModelState.IsValid)
                 return BadRequest(ModelState);
             if((obj.StartTime > obj.EndTime))
-                return BadRequest("Start Time Must Be Less Than End Time");
+                return BadRequest(new { message = "Start Time Must Be Less Than End Time", code = BadRequest().StatusCode});
             if ((obj.EndTime - obj.StartTime).TotalHours < 4)
-                return BadRequest("The Duration Must Be Greater Than 4 Hours");
+                return BadRequest(new { message = "The Duration Must Be Greater Than 4 Hours", code = BadRequest().StatusCode});
             var responseFrom = await BuiltInMethods.GetCityFromNominatimAsync(obj.FromLocation.Latitude, obj.FromLocation.Longitude, _httpClient);
             var responseTo = await BuiltInMethods.GetCityFromNominatimAsync(obj.ToLocation.Latitude, obj.ToLocation.Longitude, _httpClient);
-            var DublicateTripCheck = _unitOfWork.driverTripRequest.Get(x => x.ToGovernerate == responseTo && x.FromGovernerate == responseFrom && x.RequestStatus == DriverTripRequestStatus.Requested);
+            var DublicateTripCheck = await _unitOfWork.driverTripRequest.Get(x => x.ToGovernerate == responseTo && x.FromGovernerate == responseFrom && x.RequestStatus == DriverTripRequestStatus.Requested);
             if (DublicateTripCheck is not null)
-                return BadRequest("Trip Already Requested");
+                return BadRequest(new { message = "Trip Already Requested", code = BadRequest().StatusCode });
             if (responseFrom != null && responseTo != null)
             {
             var userId = User.GetUserId();
@@ -65,16 +65,16 @@ namespace Wasalni.Controllers
             };
                 _unitOfWork.driverTripRequest.Add(driverTripRequest);
                 _unitOfWork.Save();
-                return Ok("Trip Request Created");
+                return NoContent();
             }
-                return BadRequest("Trip Request Failed");
+                return BadRequest(new { message = "Trip Request Failed",code = BadRequest().StatusCode });
         }
         
         [HttpGet("GetAllTripsRequests")]
         
         public IActionResult GetAllTripsRequests() {
             var driverId = User.GetDriverId(_db);
-            var allTripRequests = _unitOfWork.driverTripRequest.GetAll(d => d.DriverId == driverId).Select(s => new
+            var allTripRequests = _unitOfWork.driverTripRequest.GetAll(d => d.DriverId == driverId && d.RequestStatus == DriverTripRequestStatus.Requested).Select(s => new
             {
                 id = s.Id,
                 fromGovernerate = s.FromGovernerate,
@@ -85,24 +85,22 @@ namespace Wasalni.Controllers
             });
             if (allTripRequests != null)
                 return Ok(allTripRequests);
-            return NotFound("Empty");
+            return NoContent();
         }
         [HttpGet("GetAllTrips")]
         public async Task<IActionResult> GetAcceptedTripsAsync() {
             var driverId = User.GetDriverId(_db);
-            var trips = _unitOfWork.busTrip.GetAll(b => b.DriverProfileId == driverId).Select(b => new
+            var trips = _unitOfWork.busTrip.GetAll(b => b.DriverProfileId == driverId && b.TripStatus != TripStatus.Pending).Select(b => new
             {
                 id = b.Id,
                 from = b.FromGovernerate,
                 to = b.ToGovernerate,
                 startdate = (b.StartDate)?.ToString("MM/dd"),
-                enddate = b.endDate.ToString("MM/dd"),
+                enddate = (b.endDate)?.ToString("MM/dd"),
                 status = b.TripStatus
             });
-            if (trips != null)
-                return Ok(trips);
-            else return NotFound("empty");
-
+            
+            return Ok(trips);
         }
 
 

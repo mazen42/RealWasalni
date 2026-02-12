@@ -16,8 +16,8 @@ namespace Wasalni.Infrastructure.Repositories
         public IDriverProfile driverProfile { get; set; }
         public IApplicationUser applicationUser { get; set; }
         public IDriverTripRequest driverTripRequest { get; set; }
-        public IRideRequest RideRequest { get; set; }
         public INotificationRepository Notifications { get; set; }
+        public ISeat seats {  get; set; }
 
         public UnitOfWork(AppDbContext appDbContext)
         {
@@ -30,8 +30,8 @@ namespace Wasalni.Infrastructure.Repositories
             driverProfile = new DriverProfileRepository(_db);
             applicationUser = new ApplicationUserRepository(_db);
             driverTripRequest = new DriverTripRequestRepository(_db);
-            RideRequest = new RideRequestRepository(_db);
             Notifications = new NotificationRepository(_db);
+            seats = new SeatRepository(_db);
         }
 
 

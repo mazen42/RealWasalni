@@ -8,7 +8,7 @@ namespace Wasalni_Models
 {
     public enum SeatChar
     {
-        A,
+        A = 0,
         B,
         C,
         D,
@@ -19,6 +19,8 @@ namespace Wasalni_Models
         I,
         J,
         K,
-        L
+        L,
+        M,
+        N
     }
 }

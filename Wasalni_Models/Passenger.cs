@@ -11,14 +11,10 @@ namespace Wasalni_Models
     public class Passenger
     {
         public int Id { get; set; }
-        [Required]
-        public Location FromLocation { get; set; }
-        [Required]
-        public Location ToLocation { get; set; }
+        public Location? FromLocation { get; set; }
+        public Location? ToLocation { get; set; }
         [Required]
         public TimeOnly ArrivalTime { get; set; }
-        public RideRequest RideRequest { get; set; }
-        public int? RideRequestId { get; set; }
         public int DaysLeft { get; set; } = 30;
         public bool IsTransfared { get; set; } = false;
         public TripType TripType { get; set; }

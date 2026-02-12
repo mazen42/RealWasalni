@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
 using Wasalni.Infrastructure.Interfaces;
 using Wasalni_Models;
 using Wasalni_Models.DTOs;
@@ -13,7 +14,7 @@ namespace Wasalni.Controllers
     [Authorize(Roles = "Passenger")]
     public class TripController : ControllerBase
     {
-        private IUnitOfWork _un {  get; set; }
+        private IUnitOfWork _un { get; set; }
         private readonly HttpClient _httpClient;
 
         public TripController(IUnitOfWork unitOfWork, HttpClient httpClient)
@@ -21,50 +22,136 @@ namespace Wasalni.Controllers
             _un = unitOfWork;
             this._httpClient = httpClient;
         }
-
-        [HttpPost("UserTripRequest")]
+        [HttpPost("UserTripRequestSingle")]
         public async Task<IActionResult> UserTripRequestAsync(TripRequestDTO obj)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var responseFrom = await BuiltInMethods.GetCityFromNominatimAsync(obj.FromLocation.Latitude, obj.FromLocation.Longitude,_httpClient);
-            var responseTo = await BuiltInMethods.GetCityFromNominatimAsync(obj.ToLocation.Latitude, obj.ToLocation.Longitude,_httpClient);
+            var responseFrom = await BuiltInMethods.GetCityFromNominatimAsync(obj.FromLocation.Latitude, obj.FromLocation.Longitude, _httpClient);
+            var responseTo = await BuiltInMethods.GetCityFromNominatimAsync(obj.ToLocation.Latitude, obj.ToLocation.Longitude, _httpClient);
+
             var PassengerRepeatingCheck = await _un.passenger.Get(x => x.FromLocation.Longitude == obj.FromLocation.Longitude && x.FromLocation.Latitude == obj.FromLocation.Latitude && x.ToLocation.Longitude == obj.ToLocation.Longitude && x.ToLocation.Latitude == obj.ToLocation.Latitude && x.ApplicationUserId == User.GetUserId() && x.ArrivalTime == obj.arrivalTime);
             if (PassengerRepeatingCheck is not null)
-                return BadRequest(new { message = "Trip Already Requested",code = BadRequest().StatusCode });
+                return BadRequest(new { message = "Trip Already Requested", code = BadRequest().StatusCode });
             if (responseFrom is null || responseTo is null)
-                return BadRequest(new {code = BadRequest().StatusCode, message = "Invalid Location" });
-            Passenger passenger = new Passenger
+                return BadRequest(new { code = BadRequest().StatusCode, message = "Invalid Location" });
+
+            var ExsitsTripsCheck = _un.busTrip.GetAll(
+    r => r.FromGovernerate == responseFrom &&
+         r.ToGovernerate == responseTo &&
+         r.ArrivalTime == obj.arrivalTime &&
+         r.VehicleType == obj.VehicleType &&
+         r.TripType == obj.TripType &&
+         r.Passengers.Count() < 14 &&
+         r.TripStatus == TripStatus.Pending,
+    includeProperties: "Passengers,Seats"
+).OrderBy(o => o.CreatedAt).FirstOrDefault();
+            var objToSend = new
             {
-                ArrivalTime = obj.arrivalTime,
-                TripType = obj.TripType,
-                FromLocation = new Location { Latitude = obj.FromLocation.Latitude, Longitude = obj.FromLocation.Longitude },
-                ToLocation = new Location { Latitude = obj.ToLocation.Latitude, Longitude = obj.ToLocation.Longitude },
-                ApplicationUserId = User.GetUserId(),
+                fromGovernerate = responseFrom,
+                toGovernerate = responseTo,
+                arrivalTime = obj.arrivalTime,
+                vehicleType = obj.VehicleType,
+                tripType = obj.TripType,
+                fromLocaation = obj.FromLocation,
+                toLocation = obj.ToLocation,
             };
-            _un.passenger.Add(passenger);
-            _un.Save();
-            var RideRequestsCheck = _un.RideRequest.GetAll(r => r.FromGovernorate == responseFrom && r.ToGovernorate == responseTo && r.ArrivalTime == obj.arrivalTime && r.VehicleType == obj.VehicleType && obj.TripType == r.TripType && r.passengers.Count() < 14 , includeProperties: "passengers").OrderBy(o => o.CreatedAt).FirstOrDefault();
-            if(RideRequestsCheck != null)
+            if (ExsitsTripsCheck != null)
             {
-                passenger.RideRequestId = RideRequestsCheck.Id;
-                _un.Save();
-                return Ok(new {message = "Trip Booked Successfully u Will Get Notification When its done",code = Ok().StatusCode});
+                var seatsDict = ExsitsTripsCheck.Seats.putThePassengerinTheApproproiateSeatSingle();
+                return Ok(new { message = seatsDict, tripId = ExsitsTripsCheck.Id, tripData = objToSend, code = Ok().StatusCode });
             }
-            var newRide = new RideRequest
+            else
             {
-                ArrivalTime = obj.arrivalTime,
-                FromGovernorate = responseFrom!,
-                ToGovernorate = responseTo!,
-                CreatedAt = DateTime.UtcNow,
-                TripType = obj.TripType,
-                VehicleType = obj.VehicleType,
-            };
-            _un.RideRequest.Add(newRide);
-            _un.Save();
-            passenger.RideRequestId = newRide.Id;
-            _un.Save();
-            return Ok(new {message = "Trip Requested Successfully", code = Ok().StatusCode});
+                var dict = new Dictionary<string, bool>
+            {
+                { "A", false },
+                { "B", false },
+                { "C", false },
+                { "D", false },
+                { "E", false },
+                { "F", false },
+                { "G", false },
+                { "H", false },
+                { "I", false },
+                { "L", false },
+                { "M", false },
+                { "N", false },
+                };
+
+                return Ok(new { message = dict, tripId = 0, tripData = objToSend, code = Ok().StatusCode });
+            }
+        }
+        [HttpPost("BookTheTripWithSeatChar")]
+        public async Task<IActionResult> BookTheTripWithSeatChar(TripBookDTO obj)
+        {
+            if (obj.tripId == 0)
+            {
+                var busTrip = new BusTrip
+                {
+                    ArrivalTime = obj.arrivalTime,
+                    FromGovernerate = obj.fromGovernerate!,
+                    ToGovernerate = obj.toGovernerate,
+                    TripStatus = TripStatus.Pending,
+                    CreatedAt = DateTime.Now,
+                    VehicleType = obj.VehicleType,
+                    TripType = obj.TripType,
+                };
+                _un.busTrip.Add(busTrip);
+                _un.Save();
+                var passenger = new Passenger
+                {
+                    ApplicationUserId = User.GetUserId(),
+                    ArrivalTime = obj.arrivalTime,
+                    DaysLeft = 30,
+                    TripType = obj.TripType,
+                    BusTripId = busTrip.Id,
+                };
+                _un.passenger.Add(passenger);
+                _un.Save();
+                var seat = new Seat
+                {
+                    PassengerId = passenger.Id,
+                    SeatChar = (SeatChar)obj.CharIndex,
+                    SeatStatus = SeatStatus.Booked,
+                    BusTripId = busTrip.Id,
+
+                };
+                _un.seats.Add(seat);
+                _un.Save();
+            }
+            else
+            {
+                var TripGetter = await _un.busTrip.Get(x => x.Id == obj.tripId,includeProperties: "Seats");
+                if (TripGetter != null)
+                {
+                    SeatChar seatChar = (SeatChar)obj.CharIndex;
+                    var seatCheck = TripGetter.Seats.Select(s => s.SeatChar );
+                    if (seatCheck.Contains(seatChar)) {
+                        return BadRequest(new { message = "the Seat Is Booked", code = BadRequest().StatusCode });
+                    }
+                    var passenger = new Passenger
+                    {
+                        ApplicationUserId = User.GetUserId(),
+                        ArrivalTime = TripGetter.ArrivalTime,
+                        TripType = TripGetter.TripType,
+                        BusTripId = TripGetter.Id,
+                    };
+                    _un.passenger.Add(passenger);
+                    _un.Save();
+                    var seat = new Seat
+                    {
+                        PassengerId = passenger.Id,
+                        SeatChar = (SeatChar)obj.CharIndex,
+                        SeatStatus = SeatStatus.Booked,
+                        BusTripId = TripGetter.Id,
+
+                    };
+                    _un.seats.Add(seat);
+                    _un.Save();
+                }
+            }
+            return Ok(new {message = "Trip Booked Successfully",code = Ok().StatusCode});
         }
     }
 }

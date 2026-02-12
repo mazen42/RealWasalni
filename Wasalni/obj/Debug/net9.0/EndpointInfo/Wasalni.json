@@ -312,7 +312,7 @@
         }
       }
     },
-    "/api/Trip/UserTripRequest": {
+    "/api/Trip/UserTripRequestSingle": {
       "post": {
         "tags": [
           "Trip"
@@ -332,6 +332,37 @@
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/TripRequestDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Trip/BookTheTripWithSeatChar": {
+      "post": {
+        "tags": [
+          "Trip"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripBookDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripBookDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripBookDTO"
               }
             }
           }
@@ -419,6 +450,45 @@
           },
           "rememberMe": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TripBookDTO": {
+        "type": "object",
+        "properties": {
+          "fromGovernerate": {
+            "type": "string",
+            "nullable": true
+          },
+          "toGovernerate": {
+            "type": "string",
+            "nullable": true
+          },
+          "charIndex": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "fromLocation": {
+            "$ref": "#/components/schemas/LocationDTO"
+          },
+          "toLocation": {
+            "$ref": "#/components/schemas/LocationDTO"
+          },
+          "tripId": {
+            "type": "integer",
+            "format": "int32",
+            "nullable": true
+          },
+          "arrivalTime": {
+            "type": "string",
+            "format": "time"
+          },
+          "vehicleType": {
+            "$ref": "#/components/schemas/VehicleType"
+          },
+          "tripType": {
+            "$ref": "#/components/schemas/TripType"
           }
         },
         "additionalProperties": false

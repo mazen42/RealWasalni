@@ -5,7 +5,7 @@
 namespace Wasalni_DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class makeidofriderequestidentity : Migration
+    public partial class makethepassengerlocationsnullable2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

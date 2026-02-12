@@ -201,8 +201,24 @@
   },
   {
     "ContainingType": "Wasalni.Controllers.TripController",
+    "Method": "BookTheTripWithSeatChar",
+    "RelativePath": "api/Trip/BookTheTripWithSeatChar",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.TripBookDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.TripController",
     "Method": "UserTripRequestAsync",
-    "RelativePath": "api/Trip/UserTripRequest",
+    "RelativePath": "api/Trip/UserTripRequestSingle",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,

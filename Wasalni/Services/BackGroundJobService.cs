@@ -28,9 +28,8 @@ namespace Wasalni.Services
         }
         public void FillingBusTripsByDriversAndSendNotificationToAllPassengers()
         {
-            //var TripRequestTableCheck = _unitOfWork.RideRequest.GetAll(r => r.ArrivalTime == obj.arrivalTime && r.TripType == obj.TripType && r.VehicleType == obj.VehicleType && r.FromGovernorate == responseFrom && r.ToGovernorate == responseTo);
-            var readyTrip = _unitOfWork.RideRequest.GetAll(includeProperties: "passengers",tracked:false);
             var baseDate = DateTime.Today;
+            var readyTrip = _unitOfWork.busTrip.GetAll(x => x.DriverProfileId == null && x.TripStatus == TripStatus.Pending, includeProperties: "Passengers",tracked:true);
 
             if (readyTrip is not null)
             {
@@ -40,7 +39,7 @@ namespace Wasalni.Services
                     var arrivalPlusHour = arrivalDateTime.AddHours(1);
                     var AppropriateDrivers = SpecificationEvaluator.applySpecification(
                         _unitOfWork._db.DriverTripRequests,
-                        new AppropriateDriverSpecification(trip.ToGovernorate, trip.FromGovernorate)
+                        new AppropriateDriverSpecification(trip.ToGovernerate, trip.FromGovernerate,trip.VehicleType)
                     ).AsEnumerable().ToList();
                     var AppropriateDriverGetter = AppropriateDrivers.FirstOrDefault(d =>
                     {
@@ -50,37 +49,20 @@ namespace Wasalni.Services
                             end = end.AddDays(1);
                         return start <= arrivalPlusHour && end >= arrivalPlusHour.AddHours(-1);
                     });
-                    if (AppropriateDriverGetter != null) {
+                    if (AppropriateDriverGetter != null)
+                    {
                         AppropriateDriverGetter.RequestStatus = DriverTripRequestStatus.Tripped;
-                        trip.IsDone = true;
-                        BusTrip newBusTrip = new BusTrip
-                        {
-                            CreatedAt = DateTime.Now,
-                            DriverProfileId = AppropriateDriverGetter.DriverId,
-                            StartDate = DateOnly.FromDateTime(DateTime.Now),
-                            endDate = DateOnly.FromDateTime(DateTime.Now.AddMonths(1)),
-                            TripStatus = TripStatus.INWork,
-                            FromGovernerate = trip.FromGovernorate,
-                            ToGovernerate = trip.ToGovernorate,
-                            NotificationSent = true,
-                        };
-                        _unitOfWork.busTrip.Add(newBusTrip);
+                        trip.TripStatus = TripStatus.INWork;
+                        trip.DriverProfileId = AppropriateDriverGetter.DriverId;
                         _unitOfWork.Save();
-                        foreach(var pass in trip.passengers)
-                        {
-                            _unitOfWork._db.Passengers.Attach(pass);
-                            pass.RideRequestId = null;
-                            pass.BusTripId = newBusTrip.Id;
-                        }
                         RoutePlan routePlan = new RoutePlan
                         {
-                            BusTripId = newBusTrip.Id,
+                            BusTripId = trip.Id,
                             CreatedAt = DateTime.Now,
                         };
                         _unitOfWork.routePlan.Add(routePlan);
                         _unitOfWork.Save();
-                        //The Message Will Be The Details of the Route Plan After Ai Send It
-                        _notificationService.SendTripCompletionNotifications(newBusTrip.Id, "Your Trip In Work Know", "Your Trip Is Done Don't Miss It!");
+                        _notificationService.SendTripCompletionNotifications(trip.Id, "Your Trip In Work Know", "Your Trip Is Done Don't Miss It!");
                     }
                 }
             }

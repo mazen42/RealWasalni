@@ -22,8 +22,12 @@ wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\Images\IdCards\0a4049e1-e827-4cb1-9945-d604d4f76b2b.jpg
 wwwroot\Images\IdCards\1e5732d8-84e6-4374-b87a-452f6bb44b11.jpg
+wwwroot\Images\IdCards\57f6456b-49d9-4c40-832f-1614b0da17ac.png
+wwwroot\Images\IdCards\997aade3-01d3-4b71-9d54-8ea5c444081a.jpg
 wwwroot\Images\LicenseCards\2f8b9b5d-abc2-4957-ad96-90c8f7b738ad.png
+wwwroot\Images\LicenseCards\3c875d17-f0fb-424f-87e3-1b235294f7fc.jpg
 wwwroot\Images\LicenseCards\4ab208b7-93de-479e-9043-80076f7e4bde.jpg
+wwwroot\Images\LicenseCards\c41553e1-1c52-4551-91ac-4d6d95b72113.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap.css
 wwwroot\lib\bootstrap\dist\css\bootstrap.css.map

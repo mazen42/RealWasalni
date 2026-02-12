@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Wasalni_Models.DTOs
 {
-public class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
+    public class TimeOnlyJsonConverter : JsonConverter<TimeOnly>
     {
-        private const string TimeFormat = "hh:mm tt"; // hh = 12-hour, tt = AM/PM
+        private const string TimeFormat = "HH:mm"; // 24-hour format
 
         public override TimeOnly Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

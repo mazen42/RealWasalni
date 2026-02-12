@@ -268,10 +268,13 @@ namespace Wasalni_DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<TimeOnly>("ArrivalTime")
+                        .HasColumnType("time");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("DriverProfileId")
+                    b.Property<int?>("DriverProfileId")
                         .HasColumnType("int");
 
                     b.Property<string>("FromGovernerate")
@@ -297,7 +300,13 @@ namespace Wasalni_DataAccess.Migrations
                     b.Property<int>("TripStatus")
                         .HasColumnType("int");
 
-                    b.Property<DateOnly>("endDate")
+                    b.Property<int>("TripType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VehicleType")
+                        .HasColumnType("int");
+
+                    b.Property<DateOnly?>("endDate")
                         .HasColumnType("date");
 
                     b.HasKey("Id");
@@ -447,9 +456,6 @@ namespace Wasalni_DataAccess.Migrations
                     b.Property<bool>("IsTransfared")
                         .HasColumnType("bit");
 
-                    b.Property<int?>("RideRequestId")
-                        .HasColumnType("int");
-
                     b.Property<int>("TripType")
                         .HasColumnType("int");
 
@@ -459,45 +465,7 @@ namespace Wasalni_DataAccess.Migrations
 
                     b.HasIndex("BusTripId");
 
-                    b.HasIndex("RideRequestId");
-
                     b.ToTable("Passengers");
-                });
-
-            modelBuilder.Entity("Wasalni_Models.RideRequest", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<TimeOnly>("ArrivalTime")
-                        .HasColumnType("time");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("FromGovernorate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDone")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ToGovernorate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("TripType")
-                        .HasColumnType("int");
-
-                    b.Property<int>("VehicleType")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("RideRequests");
                 });
 
             modelBuilder.Entity("Wasalni_Models.RoutePlan", b =>
@@ -523,6 +491,37 @@ namespace Wasalni_DataAccess.Migrations
                         .IsUnique();
 
                     b.ToTable("RoutePlans");
+                });
+
+            modelBuilder.Entity("Wasalni_Models.Seat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BusTripId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PassengerId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatChar")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SeatStatus")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusTripId");
+
+                    b.HasIndex("PassengerId")
+                        .IsUnique()
+                        .HasFilter("[PassengerId] IS NOT NULL");
+
+                    b.ToTable("Seats");
                 });
 
             modelBuilder.Entity("Wasalni_Models.TripPoint", b =>
@@ -654,8 +653,7 @@ namespace Wasalni_DataAccess.Migrations
                     b.HasOne("Wasalni_Models.DriverProfile", "DriverProfile")
                         .WithMany("busTrips")
                         .HasForeignKey("DriverProfileId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.NoAction);
 
                     b.Navigation("DriverProfile");
                 });
@@ -706,21 +704,16 @@ namespace Wasalni_DataAccess.Migrations
                         .HasForeignKey("BusTripId")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("Wasalni_Models.RideRequest", "RideRequest")
-                        .WithMany("passengers")
-                        .HasForeignKey("RideRequestId")
-                        .OnDelete(DeleteBehavior.NoAction);
-
                     b.OwnsOne("Wasalni_Models.Location", "FromLocation", b1 =>
                         {
                             b1.Property<int>("PassengerId")
                                 .HasColumnType("int");
 
-                            b1.Property<double>("Latitude")
+                            b1.Property<double?>("Latitude")
                                 .HasPrecision(9, 4)
                                 .HasColumnType("float(9)");
 
-                            b1.Property<double>("Longitude")
+                            b1.Property<double?>("Longitude")
                                 .HasPrecision(9, 4)
                                 .HasColumnType("float(9)");
 
@@ -737,11 +730,11 @@ namespace Wasalni_DataAccess.Migrations
                             b1.Property<int>("PassengerId")
                                 .HasColumnType("int");
 
-                            b1.Property<double>("Latitude")
+                            b1.Property<double?>("Latitude")
                                 .HasPrecision(9, 4)
                                 .HasColumnType("float(9)");
 
-                            b1.Property<double>("Longitude")
+                            b1.Property<double?>("Longitude")
                                 .HasPrecision(9, 4)
                                 .HasColumnType("float(9)");
 
@@ -757,13 +750,9 @@ namespace Wasalni_DataAccess.Migrations
 
                     b.Navigation("BusTrip");
 
-                    b.Navigation("FromLocation")
-                        .IsRequired();
+                    b.Navigation("FromLocation");
 
-                    b.Navigation("RideRequest");
-
-                    b.Navigation("ToLocation")
-                        .IsRequired();
+                    b.Navigation("ToLocation");
                 });
 
             modelBuilder.Entity("Wasalni_Models.RoutePlan", b =>
@@ -775,6 +764,23 @@ namespace Wasalni_DataAccess.Migrations
                         .IsRequired();
 
                     b.Navigation("BusTrip");
+                });
+
+            modelBuilder.Entity("Wasalni_Models.Seat", b =>
+                {
+                    b.HasOne("Wasalni_Models.BusTrip", "BusTrip")
+                        .WithMany("Seats")
+                        .HasForeignKey("BusTripId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Wasalni_Models.Passenger", "Passenger")
+                        .WithOne("Seat")
+                        .HasForeignKey("Wasalni_Models.Seat", "PassengerId");
+
+                    b.Navigation("BusTrip");
+
+                    b.Navigation("Passenger");
                 });
 
             modelBuilder.Entity("Wasalni_Models.TripPoint", b =>
@@ -803,6 +809,8 @@ namespace Wasalni_DataAccess.Migrations
 
                     b.Navigation("RoutePlan")
                         .IsRequired();
+
+                    b.Navigation("Seats");
                 });
 
             modelBuilder.Entity("Wasalni_Models.DriverProfile", b =>
@@ -815,9 +823,9 @@ namespace Wasalni_DataAccess.Migrations
                     b.Navigation("busTrips");
                 });
 
-            modelBuilder.Entity("Wasalni_Models.RideRequest", b =>
+            modelBuilder.Entity("Wasalni_Models.Passenger", b =>
                 {
-                    b.Navigation("passengers");
+                    b.Navigation("Seat");
                 });
 
             modelBuilder.Entity("Wasalni_Models.RoutePlan", b =>

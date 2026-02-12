@@ -52,8 +52,6 @@ namespace Wasalni.Services
             };
             _unitOfWork.Notifications.Add(notificationdriver);
             _unitOfWork.Save();
-            
-
         }
     }
 }

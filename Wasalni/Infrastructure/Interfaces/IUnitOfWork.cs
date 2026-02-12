@@ -15,8 +15,8 @@ namespace Wasalni.Infrastructure.Interfaces
         public IDriverProfile driverProfile { get; set; }
         public IApplicationUser applicationUser { get; set; }
         public IDriverTripRequest driverTripRequest { get; set; }
-        public IRideRequest RideRequest { get; set; }
         public INotificationRepository Notifications { get; set; }
+        public ISeat seats { get; set; }
         void Save();
 
     }
