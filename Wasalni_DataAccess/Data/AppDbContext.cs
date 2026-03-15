@@ -18,6 +18,7 @@ namespace Wasalni_DataAccess.Data
         public DbSet<DriverProfile> DriverProfiles { get; set; }
         public DbSet<DriverTripRequest> DriverTripRequests { get; set; }
         public DbSet<Seat> Seats { get; set; }
+        public DbSet<Ticket> Tickets { get; set; }
 
         public AppDbContext(DbContextOptions Options) : base(Options)
         {
@@ -55,6 +56,7 @@ namespace Wasalni_DataAccess.Data
             builder.Entity<Passenger>().HasOne(x => x.ApplicationUser).WithMany().HasForeignKey(x => x.ApplicationUserId).IsRequired();
             builder.Entity<Seat>().HasOne(x => x.Passenger).WithOne(x => x.Seat).HasForeignKey<Seat>(x => x.PassengerId).IsRequired(false);
             builder.Entity<Seat>().HasOne(x => x.BusTrip).WithMany(x => x.Seats).HasForeignKey(x =>x.BusTripId).IsRequired();
+            builder.Entity<Passenger>().HasOne(x => x.Ticket).WithOne(x => x.Passenger).HasForeignKey<Ticket>(x => x.PassengerId).OnDelete(DeleteBehavior.Cascade).IsRequired();
         }
     }
 }

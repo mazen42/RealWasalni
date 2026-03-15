@@ -288,10 +288,79 @@
         }
       }
     },
-    "/api/Job/FillingBusTripsByDriversAndSendNotificationToAllPassengersJobCheck": {
+    "/api/Driver/GetAllAppropriateTrips": {
+      "get": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "fromPlace",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "toPlace",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Driver/ticketValidation": {
       "post": {
         "tags": [
-          "Job"
+          "Driver"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketValidationDTO"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketValidationDTO"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/TicketValidationDTO"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Driver/getAllPassengerOfTrip": {
+      "post": {
+        "tags": [
+          "Driver"
+        ],
+        "parameters": [
+          {
+            "name": "tripId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -367,6 +436,18 @@
             }
           }
         },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Trip/getUserTrips": {
+      "get": {
+        "tags": [
+          "Trip"
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -450,6 +531,24 @@
           },
           "rememberMe": {
             "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TicketValidationDTO": {
+        "required": [
+          "ticketNumber",
+          "tripId"
+        ],
+        "type": "object",
+        "properties": {
+          "ticketNumber": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "tripId": {
+            "type": "integer",
+            "format": "int32"
           }
         },
         "additionalProperties": false

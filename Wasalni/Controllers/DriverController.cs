@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Text.Json;
 using System.Threading.Tasks;
@@ -101,6 +102,55 @@ namespace Wasalni.Controllers
             });
             
             return Ok(trips);
+        }
+        [HttpGet("GetAllAppropriateTrips")]
+        public async Task<IActionResult> GetAllAppropriateTrips(string fromPlace, string toPlace)
+        {
+            var driverId = User.GetDriverId(_db);
+            var driver = await _unitOfWork.driverProfile.Get(x => x.Id == driverId,includeProperties:"Bus");
+            var appropriateTrips = _unitOfWork.busTrip.GetAll(x => x.DriverProfileId == null && x.FromGovernerate == fromPlace && x.ToGovernerate == toPlace && x.VehicleType == driver.Bus.VehicleType,includeProperties:"Passengers").Select(d => new
+            {
+                id = d.Id,
+                from = d.FromGovernerate,
+                to = d.ToGovernerate,
+                arrivalTime = d.ArrivalTime,
+                passenger = d.Passengers.Count(),
+                price = d.Price,
+            }).ToList();
+            return appropriateTrips.Count() <= 0 ? BadRequest(new { code = BadRequest().StatusCode, message = "no trips" }) : Ok(new { code = Ok().StatusCode, message = appropriateTrips });
+        }
+        [HttpPost("ticketValidation")]
+        public async Task<IActionResult> ticketValidation(TicketValidationDTO obj)
+        {
+            //var trip = _db.BusTrips.Include(x => x.Passengers).ThenInclude(x => x.Ticket).FirstOrDefault(x => x.Id == obj.TripId).Passengers.FirstOrDefault(x => x.Ticket.Ticketguid == obj.TicketNumber);
+            var ticket = _db.BusTrips.Include(x => x.Passengers).ThenInclude(x => x.Ticket).FirstOrDefault(x => x.Id == obj.TripId).Passengers.Select(x => x.Ticket).FirstOrDefault(x => x.Ticketguid == obj.TicketNumber);
+            if (ticket == null)
+            {
+                return BadRequest(new { message = "invalid Trip", code = BadRequest().StatusCode });
+            }
+            if (ticket.QRstatus)
+            {
+                return BadRequest(new { message = "already checked", code = BadRequest().StatusCode });
+            }
+            else
+            {
+                ticket.QRstatus = true;
+                _unitOfWork.Save();
+                return Ok(new { message = "Verified", code = Ok().StatusCode });
+            }
+        }
+        [HttpPost("getAllPassengerOfTrip")]
+        public async Task<IActionResult> getAllPassengerOfTrip(int tripId)
+        {
+            var trip =  await _unitOfWork.busTrip.Get(x => x.Id == tripId,includeProperties: "Passengers.ApplicationUser,Passengers.Ticket,Passengers.Seat");
+            var passengers = trip.Passengers.Select(x => new
+            {
+                name = x.ApplicationUser.UserName,
+                TicketStatus = x.Ticket.QRstatus ? "Verified" : "Pending",
+                seatChar = (int)x.Seat.SeatChar,
+            });
+            return Ok(new { message = passengers, code = Ok().StatusCode });
+
         }
 
 

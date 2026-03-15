@@ -36,7 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\IdCards\" />
     <Folder Include="wwwroot\Images\LicenseCards\" />
   </ItemGroup>
 

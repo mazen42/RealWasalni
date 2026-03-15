@@ -1,9 +1,11 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Wasalni_Utility
@@ -38,22 +40,56 @@ namespace Wasalni_Utility
 
             return null;
         }
-        public static string NormalizeArabic(string input)
-        {
-            if (string.IsNullOrWhiteSpace(input))
-                return input;
+    //    public static async Task<bool> driverCardsEndDateValidatorAsync(
+    //IFormFile file,
+    //HttpClient httpClient)
+    //    {
+    //        const string apiUrl = "https://api.ocr.space/parse/image";
 
-            return input
-                .Trim()
-                .Replace("أ", "ا")
-                .Replace("إ", "ا")
-                .Replace("آ", "ا")
-                .Replace("ى", "ي")
-                .Replace("ة", "ه")
-                .Replace("\u00A0", " ") // non-breaking space
-                .Replace("\t", " ")
-                .Replace("\r", "")
-                .Replace("\n", "");
-        }
+    //        using var form = new MultipartFormDataContent();
+
+    //        form.Add(new StringContent("K87975876588957"), "apikey");
+    //        form.Add(new StringContent("ara"), "language");
+
+    //        using var stream = file.OpenReadStream();
+    //        var fileContent = new StreamContent(stream);
+    //        fileContent.Headers.ContentType =
+    //            new System.Net.Http.Headers.MediaTypeHeaderValue(file.ContentType);
+
+    //        form.Add(fileContent, "file", file.FileName);
+
+    //        using var response = await httpClient.PostAsync(apiUrl, form);
+    //        response.EnsureSuccessStatusCode();
+
+    //        var json = await response.Content.ReadAsStringAsync();
+    //        using var doc = JsonDocument.Parse(json);
+
+    //        int ocrExitCode = doc.RootElement
+    //            .GetProperty("OCRExitCode")
+    //            .GetInt32();
+
+    //        if (ocrExitCode != 1)
+    //            return false;
+
+    //        string parsedText = doc.RootElement
+    //            .GetProperty("ParsedResults")[0]
+    //            .GetProperty("ParsedText")
+    //            .GetString() ?? "";
+
+    //        Regex dateRegex = new Regex(@"\b(\d{4}\.\d{2}\.\d{2})\b");
+    //        var matches = dateRegex.Matches(parsedText);
+
+    //        if (matches.Count == 0)
+    //            return false;
+
+    //        bool parsed = DateOnly.TryParse(matches[^1].Value, out DateOnly result);
+
+    //        return parsed && result > DateOnly.FromDateTime(DateTime.Today);
+    //    }
+
+        //public static async Task<bool> driverCardsEndDateValidatorAsync(IFormFile file, HttpClient _httpClient)
+        //{
+        //    var url = $"https://subcarbonaceous-transgressively-dione.ngrok-free.dev";
+        //}
     }
 }

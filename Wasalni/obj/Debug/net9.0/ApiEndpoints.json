@@ -145,6 +145,43 @@
   },
   {
     "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "GetAllAppropriateTrips",
+    "RelativePath": "api/Driver/GetAllAppropriateTrips",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "fromPlace",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "toPlace",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "getAllPassengerOfTrip",
+    "RelativePath": "api/Driver/getAllPassengerOfTrip",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tripId",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.DriverController",
     "Method": "GetAcceptedTripsAsync",
     "RelativePath": "api/Driver/GetAllTrips",
     "HttpMethod": "GET",
@@ -180,19 +217,25 @@
     "ReturnTypes": []
   },
   {
-    "ContainingType": "Wasalni.Controllers.JobController",
-    "Method": "DecrementPassengersLeftDaysInAllTripsAsyncJob",
-    "RelativePath": "api/Job/DecrementPassengersLeftDaysInAllTripsAsyncJobCheck",
+    "ContainingType": "Wasalni.Controllers.DriverController",
+    "Method": "ticketValidation",
+    "RelativePath": "api/Driver/ticketValidation",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "obj",
+        "Type": "Wasalni_Models.DTOs.TicketValidationDTO",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
     "ContainingType": "Wasalni.Controllers.JobController",
-    "Method": "CreateBackGroundJob",
-    "RelativePath": "api/Job/FillingBusTripsByDriversAndSendNotificationToAllPassengersJobCheck",
+    "Method": "DecrementPassengersLeftDaysInAllTripsAsyncJob",
+    "RelativePath": "api/Job/DecrementPassengersLeftDaysInAllTripsAsyncJobCheck",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -213,6 +256,16 @@
         "IsRequired": true
       }
     ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.TripController",
+    "Method": "UserTrips",
+    "RelativePath": "api/Trip/getUserTrips",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
     "ReturnTypes": []
   },
   {

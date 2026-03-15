@@ -524,6 +524,32 @@ namespace Wasalni_DataAccess.Migrations
                     b.ToTable("Seats");
                 });
 
+            modelBuilder.Entity("Wasalni_Models.Ticket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("PassengerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("QRstatus")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Ticketguid")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PassengerId")
+                        .IsUnique();
+
+                    b.ToTable("Tickets");
+                });
+
             modelBuilder.Entity("Wasalni_Models.TripPoint", b =>
                 {
                     b.Property<int>("Id")
@@ -783,6 +809,17 @@ namespace Wasalni_DataAccess.Migrations
                     b.Navigation("Passenger");
                 });
 
+            modelBuilder.Entity("Wasalni_Models.Ticket", b =>
+                {
+                    b.HasOne("Wasalni_Models.Passenger", "Passenger")
+                        .WithOne("Ticket")
+                        .HasForeignKey("Wasalni_Models.Ticket", "PassengerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Passenger");
+                });
+
             modelBuilder.Entity("Wasalni_Models.TripPoint", b =>
                 {
                     b.HasOne("Wasalni_Models.RoutePlan", "RoutePlan")
@@ -826,6 +863,9 @@ namespace Wasalni_DataAccess.Migrations
             modelBuilder.Entity("Wasalni_Models.Passenger", b =>
                 {
                     b.Navigation("Seat");
+
+                    b.Navigation("Ticket")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Wasalni_Models.RoutePlan", b =>

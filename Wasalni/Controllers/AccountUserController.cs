@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using ServiceStack.Redis;
 using System.IdentityModel.Tokens.Jwt;
+using System.Net.Http;
 using System.Security.Claims;
 using System.Text;
 using Wasalni.Infrastructure.Interfaces;
@@ -20,17 +21,35 @@ namespace Wasalni.Controllers
         public UserManager<ApplicationUser> _userManager { get; }
         public IConfiguration Confg { get; }
         public IWebHostEnvironment _webHostEnvironment { get; }
+        public HttpClient _httpClient { get; }
 
-        public AccountUserController(IUnitOfWork unitOfWork,UserManager<ApplicationUser> userManager,IConfiguration Confg, IWebHostEnvironment webHostEnvironment)
+        public AccountUserController(IUnitOfWork unitOfWork,UserManager<ApplicationUser> userManager,IConfiguration Confg, IWebHostEnvironment webHostEnvironment, HttpClient httpClient)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
             this.Confg = Confg;
             _webHostEnvironment = webHostEnvironment;
+            _httpClient = httpClient;
         }
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromForm] RegisterUserDTO obj)
         {
+            if (obj.UserType == UserType.Driver)
+            {
+                var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
+                var ext1 = Path.GetExtension(obj.IdCardFace!.FileName).ToLowerInvariant();
+                var ext2 = Path.GetExtension(obj.IdCardBack!.FileName).ToLowerInvariant();
+                var ext3 = Path.GetExtension(obj.LicenseImageFace!.FileName).ToLowerInvariant();
+                var ext4 = Path.GetExtension(obj.LicenseImageBack!.FileName).ToLowerInvariant();
+                if (!allowed.Contains(ext1) || !allowed.Contains(ext2) || !allowed.Contains(ext2) || !allowed.Contains(ext2))
+                    return BadRequest("Only .jpg, .jpeg, .png, .webp allowed");
+
+                //var expiryLisenseCheck = await BuiltInMethods.driverCardsEndDateValidatorAsync(obj.LicenseImageFace, _httpClient);
+                //if (!expiryLisenseCheck)
+                //{
+                //    return BadRequest("license card Date invalid");
+                //}
+            }
             ApplicationUser emailCheck = await _userManager.FindByEmailAsync(obj.Email);
             if (emailCheck != null)
             {
@@ -74,10 +93,6 @@ namespace Wasalni.Controllers
                 }
             if (obj.UserType == UserType.Driver)
             {
-                var allowed = new[] { ".jpg", ".jpeg", ".png", ".webp" };
-                var ext1 = Path.GetExtension(obj.IdCardFace!.FileName).ToLowerInvariant();
-                if (!allowed.Contains(ext1))
-                    return BadRequest("Only .jpg, .jpeg, .png, .webp allowed");
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
 
                 string idCardsPath = Path.Combine(wwwRootPath, @"images\IdCards");
@@ -155,13 +170,13 @@ namespace Wasalni.Controllers
             if (!passCheck)
                 return BadRequest(new { message = "Invalid UserName or Password", code = 400 });
             List<Claim> claims = new List<Claim>() {
-        new Claim(ClaimTypes.Email, usercheck.Email!),
-        new Claim(ClaimTypes.NameIdentifier, usercheck.Id),
+        new Claim("email", usercheck.Email!),
+        new Claim("NameIdentifier", usercheck.Id),
         new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
         new Claim("HomeLocation", usercheck.HomeLocation?.ToString() ?? ""),
     };
             foreach (var role in await _userManager.GetRolesAsync(usercheck))
-                claims.Add(new Claim(ClaimTypes.Role, role));
+                claims.Add(new Claim("role", role));
 
             var expiry = obj.RememberMe ? DateTime.UtcNow.AddDays(7) : DateTime.UtcNow.AddHours(1);
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Confg["JWT:Key"]!));

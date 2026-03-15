@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using System.Threading.Tasks;
 using Wasalni.Infrastructure.Interfaces;
 using Wasalni_Models;
 using Wasalni_Models.DTOs;
@@ -85,6 +86,10 @@ namespace Wasalni.Controllers
         [HttpPost("BookTheTripWithSeatChar")]
         public async Task<IActionResult> BookTheTripWithSeatChar(TripBookDTO obj)
         {
+            var ticket = new Ticket
+            {
+                Ticketguid = Guid.NewGuid().ToString()
+            };
             if (obj.tripId == 0)
             {
                 var busTrip = new BusTrip
@@ -108,6 +113,9 @@ namespace Wasalni.Controllers
                     BusTripId = busTrip.Id,
                 };
                 _un.passenger.Add(passenger);
+                _un.Save();
+                ticket.PassengerId = passenger.Id;
+                _un.tickets.Add(ticket);
                 _un.Save();
                 var seat = new Seat
                 {
@@ -139,6 +147,9 @@ namespace Wasalni.Controllers
                     };
                     _un.passenger.Add(passenger);
                     _un.Save();
+                    ticket.PassengerId = passenger.Id;
+                    _un.tickets.Add(ticket);
+                    _un.Save();
                     var seat = new Seat
                     {
                         PassengerId = passenger.Id,
@@ -151,7 +162,36 @@ namespace Wasalni.Controllers
                     _un.Save();
                 }
             }
-            return Ok(new {message = "Trip Booked Successfully",code = Ok().StatusCode});
+            
+
+            return Ok(new {message = new{ticketNumber = ticket.Ticketguid },code = Ok().StatusCode});
         }
+        [HttpGet("getUserTrips")]
+        public async Task<IActionResult> UserTrips()
+        {
+            var userId = User.GetUserId();
+            var tripsIds = _un.passenger.GetAll(x => x.ApplicationUserId == userId).Select(x => x.BusTripId);
+            var allTrips = _un.busTrip.GetAll(x => tripsIds.Contains(x.Id), includeProperties: "Passengers,DriverProfile.ApplicationUser")
+                .Select(x => new
+                {
+                    passCount = x.Passengers.Count(),
+                    driverData = x.DriverProfile != null && x.DriverProfile.ApplicationUser != null ?
+                    new
+                    {
+                        Name = x.DriverProfile.ApplicationUser.UserName,
+                        Phone = x.DriverProfile.ApplicationUser.PhoneNumber,
+                        Gender = x.DriverProfile.ApplicationUser.Gender,
+                    }:null,
+                    tripStatus = x.TripStatus,
+                    fromGovernerate = x.FromGovernerate,
+                    toGovernerate = x.ToGovernerate,
+                    Salary = x.Salary,
+                    startDate = x.StartDate,
+                    endDate = x.endDate,
+                    tripType = x.TripType,
+                });
+            return Ok(allTrips);
+        }
+        
     }
 }

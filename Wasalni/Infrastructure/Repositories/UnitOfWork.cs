@@ -4,7 +4,7 @@ using Wasalni_Models;
 
 namespace Wasalni.Infrastructure.Repositories
 {
-    public class UnitOfWork:IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
 
         public AppDbContext _db { get; set; }
@@ -17,6 +17,7 @@ namespace Wasalni.Infrastructure.Repositories
         public IApplicationUser applicationUser { get; set; }
         public IDriverTripRequest driverTripRequest { get; set; }
         public INotificationRepository Notifications { get; set; }
+        public ITicket tickets { get; set; }
         public ISeat seats {  get; set; }
 
         public UnitOfWork(AppDbContext appDbContext)
@@ -32,6 +33,7 @@ namespace Wasalni.Infrastructure.Repositories
             driverTripRequest = new DriverTripRequestRepository(_db);
             Notifications = new NotificationRepository(_db);
             seats = new SeatRepository(_db);
+            tickets = new TicketRepository(_db);
         }
 
 

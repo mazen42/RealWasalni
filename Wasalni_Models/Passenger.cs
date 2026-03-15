@@ -23,6 +23,7 @@ namespace Wasalni_Models
         public bool IsPaid { get; set; }
         public string ApplicationUserId { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
+        public Ticket Ticket { get; set; }
         public Seat? Seat { get; set; }
     }
 }

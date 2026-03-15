@@ -17,12 +17,12 @@ namespace Wasalni.Controllers
         }
 
 
-        [HttpPost("FillingBusTripsByDriversAndSendNotificationToAllPassengersJobCheck")]
-        public async Task<IActionResult> CreateBackGroundJob()
-        {
-             BackGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers();
-            return Ok("Executed Successfully");
-        }
+        //[HttpPost("FillingBusTripsByDriversAndSendNotificationToAllPassengersJobCheck")]
+        //public async Task<IActionResult> CreateBackGroundJob()
+        //{
+        //     BackGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers();
+        //    return Ok("Executed Successfully");
+        //}
         [HttpPost("DecrementPassengersLeftDaysInAllTripsAsyncJobCheck")]
         public async Task<IActionResult> DecrementPassengersLeftDaysInAllTripsAsyncJob()
         {

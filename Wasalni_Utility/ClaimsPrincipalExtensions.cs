@@ -12,10 +12,10 @@ namespace Wasalni_Utility
     {
         public static string GetUserId(this ClaimsPrincipal @this)
         {
-            return @this.FindFirst(ClaimTypes.NameIdentifier).Value;
+            return @this.FindFirst("NameIdentifier")!.Value;
         }
         public static int GetDriverId(this ClaimsPrincipal @this,AppDbContext _db) {
-            var driverId = _db.DriverProfiles.FirstOrDefault(d => d.ApplicationUserId == @this.FindFirst(ClaimTypes.NameIdentifier).Value).Id;
+            var driverId = _db.DriverProfiles.FirstOrDefault(d => d.ApplicationUserId == @this.FindFirst("NameIdentifier")!.Value)!.Id;
             return driverId;
         }
     }

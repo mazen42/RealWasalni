@@ -3,6 +3,7 @@
     public interface IBackGroundJobsServices
     {
         Task DecrementPassengersLeftDaysInAllTripsAsync();
-        void FillingBusTripsByDriversAndSendNotificationToAllPassengers();
+        //void FillingBusTripsByDriversAndSendNotificationToAllPassengers();
+        void checkTripsDates();
     }
 }

@@ -6,3 +6,5 @@ appsettings.json
 *.db
 **/Properties/launchSettings.json
 .vs/
+*.user
+*.suo

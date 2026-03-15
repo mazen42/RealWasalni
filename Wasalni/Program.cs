@@ -161,7 +161,8 @@ namespace Wasalni
             {
                 var jobs = scope.ServiceProvider.GetRequiredService<IRecurringJobsInitializer>();
                 jobs.DecrementPassengersLeftDaysInAllTripsJob();
-                jobs.FillingBusTripsByDriversAndSendNotificationToAllPassengersJob();
+                //jobs.FillingBusTripsByDriversAndSendNotificationToAllPassengersJob();
+                jobs.checkTripsDates();
             }
             app.MapControllers();
             app.MapHub<NotificationHub>("/Hubs/NotificationHub");

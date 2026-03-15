@@ -13,21 +13,31 @@ namespace Wasalni.Services
             this._JobClient = backgroundJobClient;
             _backGroundJobsServices = backGroundJobsServices;
         }
+
+        public void checkTripsDates()
+        {
+            _recurringJobManager.AddOrUpdate(
+    "checkTripsDates",
+    () => _backGroundJobsServices.checkTripsDates(),
+    Cron.Minutely()
+);
+        }
+
         public void DecrementPassengersLeftDaysInAllTripsJob()
         {
             _recurringJobManager.AddOrUpdate(
     "DecrementPassengersLeftDays",
     () => _backGroundJobsServices.DecrementPassengersLeftDaysInAllTripsAsync(),
-    Cron.Daily()
+    Cron.Minutely()
 );
         }
     
-        public void FillingBusTripsByDriversAndSendNotificationToAllPassengersJob()
-        {
-            _recurringJobManager.AddOrUpdate(
-    "FillTripsAndNotifyPassengers",
-    () => _backGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers(),
-    Cron.Daily());
-        }
+    //    public void FillingBusTripsByDriversAndSendNotificationToAllPassengersJob()
+    //    {
+    //        _recurringJobManager.AddOrUpdate(
+    //"FillTripsAndNotifyPassengers",
+    //() => _backGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers(),
+    //Cron.Minutely());
+    //    }
     }
 }
