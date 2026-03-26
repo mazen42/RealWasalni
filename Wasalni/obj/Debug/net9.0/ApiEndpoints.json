@@ -233,9 +233,51 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "Wasalni.Controllers.InvitationController",
+    "Method": "AcceptInvitation",
+    "RelativePath": "api/Invitation/accept/{invitationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invitationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.InvitationController",
+    "Method": "RejectInvitation",
+    "RelativePath": "api/Invitation/reject/{invitationId}",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "invitationId",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "Wasalni.Controllers.JobController",
     "Method": "DecrementPassengersLeftDaysInAllTripsAsyncJob",
     "RelativePath": "api/Job/DecrementPassengersLeftDaysInAllTripsAsyncJobCheck",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.JobController",
+    "Method": "RecjectionJob",
+    "RelativePath": "api/Job/RecjectionJob",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -254,6 +296,22 @@
         "Name": "obj",
         "Type": "Wasalni_Models.DTOs.TripBookDTO",
         "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Wasalni.Controllers.TripController",
+    "Method": "GetTripDetails",
+    "RelativePath": "api/Trip/GetTripDetails",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tripId",
+        "Type": "System.Int32",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

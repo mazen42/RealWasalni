@@ -11,7 +11,6 @@ namespace Wasalni_Models.DTOs
     {
         public string? fromGovernerate {  get; set; }
         public string? toGovernerate { get; set; }
-        public int CharIndex { get; set; }
         public LocationDTO? FromLocation { get; set; }
         public LocationDTO? ToLocation { get; set; }
         public int? tripId { get; set; }
@@ -19,5 +18,6 @@ namespace Wasalni_Models.DTOs
         public TimeOnly arrivalTime { get; set; } = new TimeOnly(DateTime.Now.Hour);
         public VehicleType VehicleType { get; set; } = VehicleType.Bus;
         public TripType TripType { get; set; } = TripType.Single;
+        public Dictionary<string, int> FriendsEmailsWithSeats { get; set; }
     }
 }

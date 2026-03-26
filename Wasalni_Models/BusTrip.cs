@@ -29,6 +29,7 @@ namespace Wasalni_Models
         public bool NotificationSent { get; set; } = false;
         public VehicleType VehicleType { get; set; }
         public List<Seat> Seats { get; set; }
+        public List<Invitation> Invitations { get; set; }
 
     }
 }

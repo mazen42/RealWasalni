@@ -31,13 +31,13 @@ namespace Wasalni.Services
     Cron.Minutely()
 );
         }
-    
-    //    public void FillingBusTripsByDriversAndSendNotificationToAllPassengersJob()
-    //    {
-    //        _recurringJobManager.AddOrUpdate(
-    //"FillTripsAndNotifyPassengers",
-    //() => _backGroundJobsServices.FillingBusTripsByDriversAndSendNotificationToAllPassengers(),
-    //Cron.Minutely());
-    //    }
+        public async Task InvitationsRejection()
+        {
+        _recurringJobManager.AddOrUpdate(
+        "invitation-expiry-job",
+        () => _backGroundJobsServices.InvitesRejectionJob(),
+        Cron.Minutely);
+
+        }
     }
 }

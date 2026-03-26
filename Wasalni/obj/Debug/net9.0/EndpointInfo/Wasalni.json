@@ -369,7 +369,65 @@
         }
       }
     },
+    "/api/Invitation/accept/{invitationId}": {
+      "post": {
+        "tags": [
+          "Invitation"
+        ],
+        "parameters": [
+          {
+            "name": "invitationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Invitation/reject/{invitationId}": {
+      "post": {
+        "tags": [
+          "Invitation"
+        ],
+        "parameters": [
+          {
+            "name": "invitationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Job/DecrementPassengersLeftDaysInAllTripsAsyncJobCheck": {
+      "post": {
+        "tags": [
+          "Job"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Job/RecjectionJob": {
       "post": {
         "tags": [
           "Job"
@@ -447,6 +505,28 @@
       "get": {
         "tags": [
           "Trip"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Trip/GetTripDetails": {
+      "get": {
+        "tags": [
+          "Trip"
+        ],
+        "parameters": [
+          {
+            "name": "tripId",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -564,10 +644,6 @@
             "type": "string",
             "nullable": true
           },
-          "charIndex": {
-            "type": "integer",
-            "format": "int32"
-          },
           "fromLocation": {
             "$ref": "#/components/schemas/LocationDTO"
           },
@@ -588,6 +664,14 @@
           },
           "tripType": {
             "$ref": "#/components/schemas/TripType"
+          },
+          "friendsEmailsWithSeats": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false
@@ -610,6 +694,13 @@
           },
           "tripType": {
             "$ref": "#/components/schemas/TripType"
+          },
+          "friendsEmails": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "nullable": true
           }
         },
         "additionalProperties": false

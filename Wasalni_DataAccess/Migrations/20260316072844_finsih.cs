@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Wasalni_DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class finsih : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -283,15 +283,49 @@ namespace Wasalni_DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Invitations",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ExpiresAt = table.Column<TimeOnly>(type: "time", nullable: false),
+                    SenderId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ReceiverId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Status = table.Column<int>(type: "int", nullable: false),
+                    BusTripId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Invitations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Invitations_AspNetUsers_ReceiverId",
+                        column: x => x.ReceiverId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Invitations_AspNetUsers_SenderId",
+                        column: x => x.SenderId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Invitations_BusTrips_BusTripId",
+                        column: x => x.BusTripId,
+                        principalTable: "BusTrips",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Passengers",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    FromLocation_Longitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: false),
-                    FromLocation_Latitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: false),
-                    ToLocation_Longitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: false),
-                    ToLocation_Latitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: false),
+                    FromLocation_Longitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: true),
+                    FromLocation_Latitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: true),
+                    ToLocation_Longitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: true),
+                    ToLocation_Latitude = table.Column<double>(type: "float(9)", precision: 9, scale: 4, nullable: true),
                     ArrivalTime = table.Column<TimeOnly>(type: "time", nullable: false),
                     DaysLeft = table.Column<int>(type: "int", nullable: false),
                     IsTransfared = table.Column<bool>(type: "bit", nullable: false),
@@ -362,6 +396,27 @@ namespace Wasalni_DataAccess.Migrations
                         column: x => x.PassengerId,
                         principalTable: "Passengers",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ticketguid = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PassengerId = table.Column<int>(type: "int", nullable: false),
+                    QRstatus = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tickets_Passengers_PassengerId",
+                        column: x => x.PassengerId,
+                        principalTable: "Passengers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -461,6 +516,21 @@ namespace Wasalni_DataAccess.Migrations
                 column: "DriverId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Invitations_BusTripId",
+                table: "Invitations",
+                column: "BusTripId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invitations_ReceiverId",
+                table: "Invitations",
+                column: "ReceiverId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Invitations_SenderId",
+                table: "Invitations",
+                column: "SenderId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notification_ApplicationUserId",
                 table: "Notification",
                 column: "ApplicationUserId");
@@ -492,6 +562,12 @@ namespace Wasalni_DataAccess.Migrations
                 column: "PassengerId",
                 unique: true,
                 filter: "[PassengerId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tickets_PassengerId",
+                table: "Tickets",
+                column: "PassengerId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TripPoints_RoutePlanId",
@@ -529,10 +605,16 @@ namespace Wasalni_DataAccess.Migrations
                 name: "DriverTripRequests");
 
             migrationBuilder.DropTable(
+                name: "Invitations");
+
+            migrationBuilder.DropTable(
                 name: "Notification");
 
             migrationBuilder.DropTable(
                 name: "Seats");
+
+            migrationBuilder.DropTable(
+                name: "Tickets");
 
             migrationBuilder.DropTable(
                 name: "TripPoints");

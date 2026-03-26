@@ -156,12 +156,13 @@ namespace Wasalni
             app.UseCors("AllowAll");
             app.UseAuthentication();
             app.UseAuthorization();
+            app.MapHub<NotificationHub>("/NotificationHub");
             await seedDataAsync();
             using (var scope = app.Services.CreateScope())
             {
                 var jobs = scope.ServiceProvider.GetRequiredService<IRecurringJobsInitializer>();
                 jobs.DecrementPassengersLeftDaysInAllTripsJob();
-                //jobs.FillingBusTripsByDriversAndSendNotificationToAllPassengersJob();
+                //await jobs.InvitationsRejection();
                 jobs.checkTripsDates();
             }
             app.MapControllers();

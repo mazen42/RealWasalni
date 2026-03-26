@@ -53,5 +53,30 @@ namespace Wasalni.Services
             _unitOfWork.Notifications.Add(notificationdriver);
             _unitOfWork.Save();
         }
+        public async Task sendInvite(string email, int tripId, SeatChar seatChar,int invitationId)
+        {
+            var trip = await _unitOfWork.busTrip.Get(x => x.Id == tripId, includeProperties: "RoutePlan");
+            var user = await _unitOfWork.applicationUser.Get(u => u.Email == email);
+            if (user is not null)
+            {
+                var tripData = new
+                {
+                    vehicleType = trip.VehicleType,
+                    tripId = trip.Id,
+                    fromLocation = trip.FromGovernerate,
+                    toLocation = trip.ToGovernerate,
+                    arrivalTime = trip.ArrivalTime,
+                    seatChar = seatChar,
+                    invitationId = invitationId
+                };
+                await _hubContext.Clients.User(user.Id).SendAsync("ReciveTripInvite",tripData);
+            }
+
+        }
+
+        public async Task SendNotificationAsync(string id,string title,string message)
+        {
+            await _hubContext.Clients.User(id).SendAsync(title,message);
+        }
     }
 }

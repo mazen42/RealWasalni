@@ -3,7 +3,7 @@
     public interface IRecurringJobsInitializer
     {
         void DecrementPassengersLeftDaysInAllTripsJob();
-        //void FillingBusTripsByDriversAndSendNotificationToAllPassengersJob();
+        Task InvitationsRejection();
         void checkTripsDates();
     }
 }

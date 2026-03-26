@@ -19,6 +19,7 @@ namespace Wasalni.Infrastructure.Repositories
         public INotificationRepository Notifications { get; set; }
         public ITicket tickets { get; set; }
         public ISeat seats {  get; set; }
+        public IInvitation invitation { get; set; }
 
         public UnitOfWork(AppDbContext appDbContext)
         {
@@ -34,6 +35,7 @@ namespace Wasalni.Infrastructure.Repositories
             Notifications = new NotificationRepository(_db);
             seats = new SeatRepository(_db);
             tickets = new TicketRepository(_db);
+            invitation = new InvitaitonRepository(_db);
         }
 
 

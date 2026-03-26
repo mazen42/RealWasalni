@@ -19,6 +19,7 @@ namespace Wasalni_DataAccess.Data
         public DbSet<DriverTripRequest> DriverTripRequests { get; set; }
         public DbSet<Seat> Seats { get; set; }
         public DbSet<Ticket> Tickets { get; set; }
+        public DbSet<Invitation> Invitations { get; set; }
 
         public AppDbContext(DbContextOptions Options) : base(Options)
         {
@@ -57,6 +58,20 @@ namespace Wasalni_DataAccess.Data
             builder.Entity<Seat>().HasOne(x => x.Passenger).WithOne(x => x.Seat).HasForeignKey<Seat>(x => x.PassengerId).IsRequired(false);
             builder.Entity<Seat>().HasOne(x => x.BusTrip).WithMany(x => x.Seats).HasForeignKey(x =>x.BusTripId).IsRequired();
             builder.Entity<Passenger>().HasOne(x => x.Ticket).WithOne(x => x.Passenger).HasForeignKey<Ticket>(x => x.PassengerId).OnDelete(DeleteBehavior.Cascade).IsRequired();
+            builder.Entity<Invitation>()
+    .HasOne(x => x.Receiver)
+    .WithMany(x => x.RecievedInvitations)
+    .HasForeignKey(x => x.ReceiverId)
+    .IsRequired()
+    .OnDelete(DeleteBehavior.Restrict);
+
+            builder.Entity<Invitation>()
+                .HasOne(x => x.Sender)
+                .WithMany(x => x.SentInvitations)
+                .HasForeignKey(x => x.SenderId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<Invitation>().HasOne(x => x.BusTrip).WithMany(x => x.Invitations).HasForeignKey(x => x.BusTripId).IsRequired(false).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

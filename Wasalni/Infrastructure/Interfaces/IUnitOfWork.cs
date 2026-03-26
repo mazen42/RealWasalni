@@ -18,6 +18,7 @@ namespace Wasalni.Infrastructure.Interfaces
         public INotificationRepository Notifications { get; set; }
         public ISeat seats { get; set; }
         public ITicket tickets { get; set; }
+        public IInvitation invitation { get; set; }
         void Save();
 
     }

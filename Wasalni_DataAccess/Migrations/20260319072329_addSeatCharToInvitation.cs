@@ -5,25 +5,25 @@
 namespace Wasalni_DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class stringTheGuid : Migration
+    public partial class addSeatCharToInvitation : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AddColumn<string>(
-                name: "Ticketguid",
-                table: "Tickets",
-                type: "nvarchar(max)",
+            migrationBuilder.AddColumn<int>(
+                name: "seatChar",
+                table: "Invitations",
+                type: "int",
                 nullable: false,
-                defaultValue: "");
+                defaultValue: 0);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Ticketguid",
-                table: "Tickets");
+                name: "seatChar",
+                table: "Invitations");
         }
     }
 }

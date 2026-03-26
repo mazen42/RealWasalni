@@ -16,5 +16,6 @@ namespace Wasalni_Models.DTOs
         public LocationDTO ToLocation { get; set; }
         public VehicleType VehicleType { get; set; }
         public TripType TripType { get; set; }
+        public List<string> FriendsEmails { get; set; } = new List<string>();
     }
 }

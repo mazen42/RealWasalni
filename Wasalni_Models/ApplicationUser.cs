@@ -18,5 +18,7 @@ namespace Wasalni_Models
         [Required]
         public UserType UserType { get; set; }
         public List<Notification> Notifications { get; set; } 
+        public List<Invitation> RecievedInvitations { get; set; } = new List<Invitation>();
+        public List<Invitation> SentInvitations { get; set; } = new List<Invitation>();
     }
 }

@@ -393,6 +393,45 @@ namespace Wasalni_DataAccess.Migrations
                     b.ToTable("DriverTripRequests");
                 });
 
+            modelBuilder.Entity("Wasalni_Models.Invitation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("BusTripId")
+                        .HasColumnType("int");
+
+                    b.Property<TimeOnly>("ExpiresAt")
+                        .HasColumnType("time");
+
+                    b.Property<string>("ReceiverId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("SenderId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("seatChar")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BusTripId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Invitations");
+                });
+
             modelBuilder.Entity("Wasalni_Models.Notification", b =>
                 {
                     b.Property<int>("Id")
@@ -706,6 +745,32 @@ namespace Wasalni_DataAccess.Migrations
                     b.Navigation("Driver");
                 });
 
+            modelBuilder.Entity("Wasalni_Models.Invitation", b =>
+                {
+                    b.HasOne("Wasalni_Models.BusTrip", "BusTrip")
+                        .WithMany("Invitations")
+                        .HasForeignKey("BusTripId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("Wasalni_Models.ApplicationUser", "Receiver")
+                        .WithMany("RecievedInvitations")
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Wasalni_Models.ApplicationUser", "Sender")
+                        .WithMany("SentInvitations")
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("BusTrip");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("Wasalni_Models.Notification", b =>
                 {
                     b.HasOne("Wasalni_Models.ApplicationUser", "ApplicationUser")
@@ -838,10 +903,16 @@ namespace Wasalni_DataAccess.Migrations
             modelBuilder.Entity("Wasalni_Models.ApplicationUser", b =>
                 {
                     b.Navigation("Notifications");
+
+                    b.Navigation("RecievedInvitations");
+
+                    b.Navigation("SentInvitations");
                 });
 
             modelBuilder.Entity("Wasalni_Models.BusTrip", b =>
                 {
+                    b.Navigation("Invitations");
+
                     b.Navigation("Passengers");
 
                     b.Navigation("RoutePlan")

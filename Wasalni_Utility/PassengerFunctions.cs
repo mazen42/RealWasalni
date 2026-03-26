@@ -13,7 +13,7 @@ namespace Wasalni_Utility
     {
         public static Dictionary<string,bool> putThePassengerinTheApproproiateSeatSingle(this List<Seat> seats)
         {
-            var chars = seats.Select(x => x.SeatChar.ToString()).ToHashSet();
+            var chars = seats.Select(x => new { word = x.SeatChar.ToString(), status = x.SeatStatus}).ToHashSet();
             var dict = new Dictionary<string, bool>
             {
                 { "A", false },
@@ -32,9 +32,9 @@ namespace Wasalni_Utility
             };
             foreach (var letter in chars)
             {
-                if(dict.Keys.Contains(letter))
+                if(dict.Keys.Contains(letter.word) && letter.status != SeatStatus.pending)
                 {
-                    dict[letter] = true;
+                    dict[letter.word] = true;
                 }
             }
             return dict;
