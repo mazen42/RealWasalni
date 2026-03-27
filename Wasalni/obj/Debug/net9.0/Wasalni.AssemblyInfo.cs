@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Wasalni")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9009488c5b3ce6f5050f186d74beb68199f6c722")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4e83be9297a39b6bd8136b4479a5084630c9c0e4")]
 [assembly: System.Reflection.AssemblyProductAttribute("Wasalni")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Wasalni")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

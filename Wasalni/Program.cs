@@ -31,7 +31,10 @@ namespace Wasalni
 
             //builder.Services.ConfigureOptions<DataBaseOptionsSetup>();
             // -------------------- Database --------------------
-            var connectionString = Environment.GetEnvironmentVariable("MyDbConnection");
+            var connectionString =
+    builder.Configuration.GetConnectionString("MyDbConnection")
+    ?? Environment.GetEnvironmentVariable("MyDbConnection")
+    ?? throw new InvalidOperationException("Connection string not found");
             builder.Services.AddDbContext<AppDbContext>((ServiceProvider,DbContextOptionsBuilder) =>
             {
                 //var dataBaseOptions = ServiceProvider.GetService<IOptions<DataBaseOptions>>()!.Value;
@@ -158,7 +161,7 @@ namespace Wasalni
             app.UseAuthentication();
             app.UseAuthorization();
             app.MapHub<NotificationHub>("/NotificationHub");
-            await seedDataAsync();
+            //await seedDataAsync();
             using (var scope = app.Services.CreateScope())
             {
                 var jobs = scope.ServiceProvider.GetRequiredService<IRecurringJobsInitializer>();
