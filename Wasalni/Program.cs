@@ -1,4 +1,4 @@
-﻿using FluentValidation;
+using FluentValidation;
 using Hangfire;
 using HangfireBasicAuthenticationFilter;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -31,13 +31,15 @@ namespace Wasalni
 
             //builder.Services.ConfigureOptions<DataBaseOptionsSetup>();
             // -------------------- Database --------------------
+<<<<<<< HEAD
             var connectionString =
     builder.Configuration.GetConnectionString("MyDbConnection")
     ?? Environment.GetEnvironmentVariable("MyDbConnection")
     ?? throw new InvalidOperationException("Connection string not found");
+=======
+>>>>>>> 34208c23144a2ae42e2ef21003574fb8e6c3c3cf
             builder.Services.AddDbContext<AppDbContext>((ServiceProvider,DbContextOptionsBuilder) =>
             {
-                //var dataBaseOptions = ServiceProvider.GetService<IOptions<DataBaseOptions>>()!.Value;
                 DbContextOptionsBuilder.UseSqlServer(connectionString, sqlActions =>
                 {
                     sqlActions.CommandTimeout(30);
