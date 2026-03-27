@@ -1,0 +1,16 @@
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\bin\Release\net9.0\Wasalni_DataAccess.deps.json
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\bin\Release\net9.0\Wasalni_DataAccess.dll
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\bin\Release\net9.0\Wasalni_DataAccess.pdb
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\bin\Release\net9.0\Wasalni_Models.dll
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\bin\Release\net9.0\Wasalni_Models.pdb
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.csproj.AssemblyReference.cache
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.AssemblyInfoInputs.cache
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.AssemblyInfo.cs
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.csproj.CoreCompileInputs.cache
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.sourcelink.json
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_.64BDCE8F.Up2Date
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.dll
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\refint\Wasalni_DataAccess.dll
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\Wasalni_DataAccess.pdb
+D:\Waslni\Wasalni_Development\Wasalni_DataAccess\obj\Release\net9.0\ref\Wasalni_DataAccess.dll

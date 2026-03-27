@@ -1664,10 +1664,10 @@ D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.build.jso
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.build.json.cache
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.development.json
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.build.endpoints.json
-D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\Wasalni.csproj.Up2Date
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\Wasalni.dll
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\refint\Wasalni.dll
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\Wasalni.pdb
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\Wasalni.genruntimeconfig.cache
 D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\ref\Wasalni.dll
+D:\Waslni\Wasalni_Development\Wasalni\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

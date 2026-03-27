@@ -1,0 +1,13 @@
+D:\Waslni\Wasalni_Development\Wasalni_Models\bin\Release\net9.0\Wasalni_Models.deps.json
+D:\Waslni\Wasalni_Development\Wasalni_Models\bin\Release\net9.0\Wasalni_Models.dll
+D:\Waslni\Wasalni_Development\Wasalni_Models\bin\Release\net9.0\Wasalni_Models.pdb
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.csproj.AssemblyReference.cache
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.AssemblyInfoInputs.cache
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.AssemblyInfo.cs
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.csproj.CoreCompileInputs.cache
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.sourcelink.json
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.dll
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\refint\Wasalni_Models.dll
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\Wasalni_Models.pdb
+D:\Waslni\Wasalni_Development\Wasalni_Models\obj\Release\net9.0\ref\Wasalni_Models.dll

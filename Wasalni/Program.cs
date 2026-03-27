@@ -28,13 +28,14 @@ namespace Wasalni
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddValidatorsFromAssembly(typeof(Program).Assembly,includeInternalTypes: true);
-            
+
             //builder.Services.ConfigureOptions<DataBaseOptionsSetup>();
             // -------------------- Database --------------------
+            var connectionString = Environment.GetEnvironmentVariable("MyDbConnection");
             builder.Services.AddDbContext<AppDbContext>((ServiceProvider,DbContextOptionsBuilder) =>
             {
                 //var dataBaseOptions = ServiceProvider.GetService<IOptions<DataBaseOptions>>()!.Value;
-                DbContextOptionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"),sqlActions =>
+                DbContextOptionsBuilder.UseSqlServer(connectionString, sqlActions =>
                 {
                     sqlActions.CommandTimeout(30);
                     sqlActions.EnableRetryOnFailure(3);
@@ -48,7 +49,7 @@ namespace Wasalni
             builder.Services.AddHangfire((sp, config) =>
             {
                 config.UseSimpleAssemblyNameTypeSerializer().UseRecommendedSerializerSettings();
-                config.UseSqlServerStorage(builder.Configuration.GetConnectionString("DefaultConnection"));
+                config.UseSqlServerStorage(connectionString);
             });
             builder.Services.AddHangfireServer();
             builder.Services.AddScoped<IBackGroundJobsServices,BackGroundJobService>();
